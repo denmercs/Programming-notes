@@ -276,3 +276,66 @@ else:
   print('I dont know you.')
 ```
 
+### While Loops
+
+```python
+is_learning = True
+
+while is_learning:
+  print("You're learning!")
+	user_input = input("Are you still learning?")
+  is_learning = user_input == "yes"
+
+###
+
+user_input = input("Do you wish to run the program? (yes/no)")
+
+while user_input == "yes":
+	print("We're running!")
+  user_input = input("Do you wish to run the program? (yes/ no)")
+print("We stopped running")
+```
+
+### For Loops
+
+```python
+friends = ["Rolf", "Jen", "Anne"]
+
+for friend in friends:
+  print(friend)
+  
+for friend in range(5, 10, 3):
+  print(index)
+  
+students = [
+  {"name": "Rolf", "grade": 90},
+  {"name": "Bob", "grade": 78},
+  {"name": "Jen", "grade": 100},
+  {"name": "Anne", "grade": 80}
+]
+
+for student in students:
+  name = student["name"]
+  grade = student["grade"]
+  
+  print(f"{name} has a grade of {grade}.")
+```
+
+### Destructuring
+
+```python
+currencies = 0.8, 1.2
+usd, eur = currencies
+
+friends = [("Rolf, 25"), ("Anne, 37"), ("Charlie", 32), ("Bob", 22)]
+
+for name, age in friends:
+  print(name, age)
+  
+for name in friends.values:
+  print(name)
+  
+for name, age in friends.item():
+  print(f"{name} is {age} years old")
+```
+
