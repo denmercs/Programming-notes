@@ -1,5 +1,25 @@
 # PYTHON
 
+## Problem Solving
+
+1. Understand
+
+   - The most crucial thing to do before you do anything else is to understand all of the details of what the problem is asking you to do. One helpful starting point is to transcribe the description of the problem from the page into your own words.
+
+2. Plan
+
+   - This is where you will ask *what steps will I take to solve the problem*? You will take your description of the problem and transform it into a complete, actionable plan to solve that problem. If you find shortcomings in your understanding of the problem while you’re planning, drop back to Step 1 until you resolve the ambiguity. If you have not yet completed Step 1, you will end up planning to solve the wrong problem! When interviewing, it’s very important that you do this step aloud!
+
+     Remember, you aren’t coding during this step, unless it’s small pieces of throwaway code to test a hypothesis. You should write pseudocode during this step, however.
+
+3. Execute
+
+   - This is where you take your plan and convert it to actual, working code. This step isn’t easy, but it’s much easier if you’ve done a good job with Steps 1 and 2 above. If you find shortcomings in your plan while you’re implementing the solution, drop back to Step 2 until you resolve the ambiguity. If you have not yet completed Step 2, you will spend far longer on this step than you have to.
+
+4. Reflect
+
+   - Is this implementation as good as I can make it? Would I be proud to show my code to another programmer?
+
 ### Variable
 
 ```python
@@ -337,5 +357,311 @@ for name in friends.values:
   
 for name, age in friends.item():
   print(f"{name} is {age} years old")
+```
+
+### Break and Continue
+
+```python
+cars = ["ok", "ok", "ok", "faulty", "ok", "ok"]
+
+for status in cars:
+  if status == "faulty":
+    print("Stopping the production line!")
+    break
+  print(f"This car is {status}.")
+  print("Shipping new car to customer")
+  
+ for status in cars:
+  if status == "faulty":
+    print("Found faulty car, skipping...")
+		continue
+  print(f"This car is {status}.")
+  print("Shipping new car to customer")
+
+
+ 
+```
+
+### Else in for loop
+
+```python
+cars = ["ok", "ok", "ok", "faulty", "ok", "ok"]
+
+for status in cars:
+  if status == "faulty":
+    print("Stopping the production line!")
+    break
+  print(f"This car is {status}.")
+  print("Shipping new car to customer")
+else:
+  print("All cars built successfully. No faulty cars!")
+```
+
+### Finding primes with for loops
+
+```python
+for n in range(2, 10):
+	for x in range(2, n):
+      if n % x == 0:
+		    print(f"{n} equals {x} * {n//x}")
+        break
+      else:
+        print(f"{n} is a prime number.")
+        
+
+
+```
+
+### List Slicing
+
+```python
+friends = ["Rolf", "Jen", "Anne", "Bob", "Jen"]
+
+print(friends[2:4])
+print(friends[1:])
+print(friends[:4])
+print(friends[-3:])
+print(friends[:-2])
+
+```
+
+### List Comprehension
+
+```python
+numbers = [0,1,2,3,4]
+double_numbers = []
+
+for number in numbers:
+  doubled_numbers.append(number * 2)
+
+print(double_numbers)
+
+# same
+doubled_numbers = [number * 2 for number in range(5)]
+print(double_numbers)
+
+
+friend_ages = [22, 31, 35, 57]
+age_strings = [f"My friend is {age} years old." for age in friend_ages]
+
+print(age_strings)
+
+names = ["Rolf", "Bob", "Jen"]
+lower = [name.lower() for name in names]
+friend_title_cased = lower.title()
+
+print(lower)
+print(friend_title_cased)
+
+
+```
+
+### List Comprehension with conditionals
+
+```python
+ages = [22, 31, 35, 57]
+odds = [age for age in ages if age % 2 == 1]
+print(odds)
+
+friends = ["Rolf", "ruth", "charlie", "Jen"]
+guests = ["Jose", "Bob", "Rolf", "Charlie", "michael"]
+
+"""
+
+// possible solution
+friends_lower = set([f.lower() for f in friends])
+guests_lower = set([g.lower() for g in guests])
+
+"""
+
+present_friends = [
+  name.title() 
+  for name in guests 
+  if name.lower() in [f.lower() for f in friends]
+]
+
+print(present_friends)
+```
+
+### Set Comprehension
+
+```python
+friends = ["Rolf", "ruth", "charlie", "Jen"]
+guests = ["jose", "Bob", "Rolf", "Charlie", "michael"]
+
+friends_lower = {n.lower() for n in friends}
+guests_lower = {n.lower() for n in guests}
+
+present_friends = friends_lower.intersection(guests_lower)
+present_friends = {name.title() for name in present_friends}
+
+print(present_friends)
+
+# other example
+friends = ["Rolf", "ruth", "charlie", "Jen"]
+time_since_seen = [3,7,15,11]
+long_timers = {
+  friends[i]:time_since_seen[i]
+  for i in range(len(friends))
+  if time_since_seen[i] > 5
+}
+```
+
+### Zip function
+
+```python
+friends = ["Rolf", "ruth", "charlie", "Jen"]
+time_since_seen = [3,7,15,11]
+
+dict(zip(friends, time_since_seen))
+
+long_timers = {
+  friends[i]:time_since_seen[i]
+  for i in range(len(friends))
+}
+```
+
+### Functions
+
+```python
+def greet():
+  name = input("Enter your name: ")
+  print(f"Hello, {name}!")
+
+greet()
+```
+
+### Arguments and Parameters
+
+```python
+ car = {
+    "make": "Ford",
+    "model": "Fiesta",
+    "mileage": 23000,
+    "fuel_consumed": 460
+  }
+  
+def calculate_mpg(car_to_calculate):
+  mpg = car_to_calculate["mileage"] / car_to_calculate["fuel_consumed"]
+  name = f"{car_to_calculate["make"]} {car_to_calculate["model"]}"
+  print(f"{name} does {mpg} miles per gallon.")
+  
+calculate_mpg( {
+  "make": "Ford",
+  "model": "Fiesta",
+  "mileage": 23000,
+  "fuel_consumed": 460
+})
+```
+
+### Return values
+
+```python
+cars = [
+	{"make": "Ford", "model": "Fiesta", "mileage": 23000, "fuel_consumed: 450"},
+	{"make": "Ford", "model": "Fiesta", "mileage": 23000, "fuel_consumed: 450"}
+	{"make": "Ford", "model": "Fiesta", "mileage": 23000, "fuel_consumed: 450"},
+  {"make": "Ford", "model": "Fiesta", "mileage": 23000, "fuel_consumed: 450"}
+]
+
+def calculate_mpg(car):
+	mpg = car["mileage"] / car["fuel_consumed"]
+  return mpg
+	name = f"{car["make"]} {car["model"]}"
+  print(f"{name} does {mpg} miles per gallon.")
+
+  
+def car_name(car):
+  name = f"{car["make"]} {car["model"]}"
+  return name
+
+
+def print_car_info(car):
+  name = car_name(car)
+  mpg = calculate_mpg(car)
+  
+  print(f"{name} does {mpg} miles per gallon.")
+
+for car in cars:
+	print_car_info(car)
+```
+
+### Lambda Functions
+
+- can sometimes provide simplicity to the code and other way around
+
+```python
+def divide(x, y):
+	return x / y
+
+divide = lambda x, y: x / y
+
+print(divide(15,3))
+```
+
+```python
+"""
+def average(sequence):
+  return sum(sequence) / len(sequence)
+"""
+
+average = lambda sequence: sum(sequence) / len(sequence)
+
+students = [
+  {"name": "Rolf", "grades": (67, 90, 95, 100)},
+  {"name": "Rolf", "grades": (67, 90, 95, 100)},
+  {"name": "Rolf", "grades": (67, 90, 95, 100)}
+]
+
+for student in students:
+  print(average(student['grades']))
+```
+
+### First class functions and higher order functions
+
+- all functions in python are first class function
+
+```python
+# first class function
+def greet():
+  print("Hello")
+  
+greet
+
+# higher order function - accepts function as an argument
+def before_and_after(func):
+  print("Before...")
+  func()
+  print("After...")
+  
+def greet():
+  print("Hello!")
+  
+before_and_after(greet)
+```
+
+```python
+operations = {
+  "average": lambda seq: sum(seq) / len(seq),
+  "total": lambda seq: sum(seq),
+	"top": lambda seq: max(seq)
+}
+
+students = [
+  {"name": "Rolf", "grades": (67, 90, 96, 100)},
+  {"name": "Rolf", "grades": (67, 90, 96, 100)},
+  {"name": "Rolf", "grades": (67, 90, 96, 100)},
+  {"name": "Rolf", "grades": (67, 90, 96, 100)},
+]
+
+for student in students:
+  name = student["name"]
+  grades = student["grades"]
+  
+  print(f"Student: {name}")
+  operation = i nput("Enter 'average', 'total', or 'top': ")
+  
+  result = operations[operation](grades)
+  print(result)
 ```
 
