@@ -665,6 +665,8 @@ for student in students:
   print(result)
 ```
 
+# Object Oriented Programming
+
 ### Dictionaries and Object
 
 ```python
@@ -679,11 +681,492 @@ def average_grade(student):
 print(average_grade(my_student))
 
 class Student:
-  def __init__(self, new_name, new_grade):	#dunder functions
+  def __init__(self, new_name, new_grade):	#dunder (double underscore) functions
     self.name = new_name
     self.grades = new_grades
     
   def average(self):
     return sum(self.grades) / len(self.grades)
+  
+student_one = Student('Rolf Smith', [70, 88, 90, 99])
+student_two = Student('Jose', [50,60, 99, 100])
+
+print(student_two.name)
+print(student_one.name)
+
+print(student_one.average())
+```
+
+### Parameter naming
+
+```python
+class Movie:
+  def __init__(self, name, year):
+    self.name = name 
+    # self.name is not a variable, it's a property of self. the name is the value of the name variable
+    self. year = year
+    
+matrix = Movie('The Matrix', 1994).name
+print(matrix.name)
+```
+
+### Special Methods
+
+```python
+class Student:
+  def __init__(self, name):
+    self.name = name
+
+movies = ['Matrix', 'Finding Nemo']
+
+print(movies.__class__) # everything in python is an object
+print('Hi'.__class__)
+print(len(movies))
+
+# another example
+class Garage:
+  def __init__(self):
+    self.cars = []
+    
+	def __len__(self):
+    	return len(self.cars)
+    
+  def __getitem__(self, i)
+  		return self.cars[i]
+  
+  # every class you create you should have repr and str
+  
+  def __repr__(self): #return the string representing the object - it will call first
+    	return f'<Garage {self.cars}>'
+  
+  def __str__(self):
+	    return f'Garage with {len(self)} cars.'
+    
+ford = Garage()
+ford.cars.append('Fiesta')
+ford.cars.append('Focus')
+
+print(ford.cars)
+print(ford[0]) # Garage.__getitem__(ford, 0)
+
+print(ford)
+```
+
+### Inheritance 
+
+```python
+class Student:
+  def __init__(self, name, school):
+    self.name = name
+    self.school = school
+    self.marks = []
+    
+  def average(self):
+    return sum(self.marks) / len(self.marks)
+  
+class WorkingStudent:
+  def __init__(self, name, school, salary):
+    super().__init__(name, school)
+    self.salary = salary
+    
+	def week_salary(self):
+    return self.salary * 37.5
+
+rolf = WorkingStudent('Rolf', 'MIT', 15.50)
+print(rolf.salary)
+rolf.marks.append(57)
+rolf.marks.append(99)
+print(rolf.average())
+print(rolf.weekly_salary())
+
+anna = Student('Anna', 'Oxford')
+print(anna.weekly_salary()) #error because it doesn't have a weekly salary method
+
+
+```
+
+### Object Property
+
+```python
+class Student:
+  def __init__(self, name, school):
+    self.name = name
+    self.school = school
+    self.marks = []
+    
+  def average(self):
+    return sum(self.marks) / len(self.marks)
+  
+class WorkingStudent:
+  def __init__(self, name, school, salary):
+    super().__init__(name, school)
+    self.salary = salary
+    
+  @property # --> decorators (use this for only calculating valuse not doing actions)
+	def week_salary(self):
+    return self.salary * 37.5
+
+rolf = WorkingStudent('Rolf', 'MIT', 15.50)
+print(rolf.salary)
+rolf.marks.append(57)
+rolf.marks.append(99)
+print(rolf.average())
+print(rolf.weekly_salary())
+
+print(rolf.weekly_salary)	# this is just a property because it doesn't have '()' executed.
+
+anna = Student('Anna', 'Oxford')
+print(anna.weekly_salary()) #error because it doesn't have a weekly salary method
+
+```
+
+### Class method and Static Methods Decorators
+
+```python
+class Student:
+  def __init__(self, name, school):
+    self.name = name
+    self.school = school
+    self.marks = []
+    
+  def average(self):
+    return sum(self.marks) / len(self.marks)
+
+rolf = Student('Rolf', 'MIT')
+
+rolf.marks.append(78)
+rolf.marks.append(99)
+
+print(rolf.average())
+
+Student.average('hello') # doesn't work
+
+class Foo:
+  @classmethod 		#--> decorator
+  def hi(cls):
+    print(cls.__name__)
+
+my_object = Foo() 
+my_object.hi() ## --> Foo
+
+class Bar:
+  @staticmethod		#--> decorator
+  def hi():
+    print('Hello, i don\'t take parameters.')
+
+another_object = Bar()
+another_object.hi()
+
+#### MORE EXAMPLES ####
+
+class FixedFloat:
+  def __init__(self, amount):
+    self.amount = amount
+	
+  def __repr__(self):
+    return f'<FixedFloat {self.amount:.2f}>'
+  
+  @staticmethod
+  def from_sum(value1, value2):
+    return FixedFloat(value1 + value2)
+
+# disregard below
+number = FixedFloat(18.5746) #--> we never used this (Fixedfloat)
+
+# calling the static method directly
+# we don't need to create a new object before calling a method.
+new_number = FixedFloat.from_sum(19.75, 0.789)
+print(new_number)
+
+### Another Example ###
+class FixedFloat:
+  def __init__(self, amount):
+    self.amount = amount
+	
+  def __repr__(self):
+    return f'<FixedFloat {self.amount:.2f}>'
+ 
+  
+  @classmethod
+  def from_sum(cls, value1, value2):
+    return cls(value1 + value2)
+
+
+class Euro(FixedFloat):
+  def __init__(self, amount):
+    super().__init__(amount)
+    self.symbol = '€'
+    
+    def __repr__(self):
+      return f'<Euro {self.symbol}{self.amount:.2f}'
+
+money = Euro.from_sum(16.758, 9.999)
+print(money) 
+
+### @classmethod is more advisable rather than the @staticmethod
+```
+
+# Advance Object Oriented Principles
+
+```python
+# user.py
+
+class User:
+  def __init__(self, username, password):
+    self.usrename = username
+    self. password = password
+    
+  def login(self):
+    return 'Logged in!'
+  
+  def __repr__(self):
+    return f'<User {self.username}>'
+  
+  
+```
+
+```python
+# admin.py
+
+from user import User
+from saveable import Saveable
+from database import Database
+
+class Admin(User, Saveable): #--> inheritance (Saveable)
+  def __init__(self, username, password, access):
+    super(Admin, self).__init__(username, password)
+    self.access = access
+    
+	def __repr__(self):
+    return f'<Admin {self.username}, access {self.access}>'
+  
+  def to_dict(self):
+    return {
+      'username': self.username
+      'password': self.password
+      'access': self.access
+    }
+  
+  # self.save() will be searched in Admin
+  # then in User
+  # then in Saveable, where it will be found
+  # self.save() uses self.to_dict
+  # self.to_dict() will be search for in Admin, where it will be found
+```
+
+```python
+# database.py
+
+class Database:
+  content = {'users': []}
+  
+  @classmethod
+  def insert(cls, data):
+    cls.content['users'].append(data)
+
+	@classmethod
+  def remove(cls, finder): #--> lambda x: x['username'] != 'Rolf'
+    cls.content['users'] = [user for user in cls.content['users'] if not finder(user)]
+	
+  @classmethod
+  def find(cls, finder): #--> lambda x: x['username'] == 'Rolf'
+    return [user for user in cls.content['users'] if finder(user)]
+  
+  
+```
+
+```python
+# app.py
+
+from admin import Admin
+
+a = Admin('rolf', '1234', 3)
+a.save()
+
+print(Database.find(lambda x:x['username'] == 'rolf'))
+```
+
+```python
+# store.py
+
+class Store:
+	def to_dict(self):
+		pass
+		
+	def save(self):
+		Database.insert(self.to_dict())
+```
+
+```python
+# savable.py
+from database import Database
+
+class Saveable:
+  def save(self):
+      Database.insert(self.to_dict())
+```
+
+### ABC
+
+```python
+# animals.py
+from abc import ABCMeta, abstractmethod
+
+class Animal(metaclass=ABCMeta)
+  def walk(self):
+    print('Walking...')
+
+ 	@abstractmethod
+  def num_legs(self):
+    pass
+  
+class Dog(Animal):
+  def __init__(self, name):
+    self.name = name
+    
+  def num_legs(self):
+    return 4
+  
+class Monkey(Animal):
+  def __init__(self, name):
+    self.name = name
+    
+  def num_legs(self):
+    return 2
+
+  
+animals = [Dog('Rolf'), Monkey('Bob')]
+for a in animals:
+  print(isinstance(a, Animal))
+  print(a.num_legs())
+```
+
+### ABC and Interface
+
+- interface defines what a subclass must do
+
+```python
+# savable.py
+from database import Database
+from abc import ABCMeta, abstractmethod
+
+class Saveable(metaclass=ABCMeta):
+  def save(self):
+      Database.insert(self.to_dict())
+      
+  @abstractmethod #--> abstract method used and it is an interface
+  def to_dict(self):
+    pass
+```
+
+```python
+# admin.py
+
+from user import User
+from saveable import Saveable
+from database import Database
+
+class Admin(User, Saveable): #--> inheritance (Saveable)
+  def __init__(self, username, password, access):
+    super(Admin, self).__init__(username, password)
+    self.access = access
+    
+	def __repr__(self):
+    return f'<Admin {self.username}, access {self.access}>'
+  
+  def to_dict(self):
+    return {
+      'username': self.username
+      'password': self.password
+      'access': self.access
+    }
+```
+
+```python
+# user.py
+from saveable import Saveable
+
+class User(Saveable):
+  def __init__(self, username, password):
+    self.usrename = username
+    self. password = password
+    
+  def login(self):
+    return 'Logged in!'
+  
+  def __repr__(self):
+    return f'<User {self.username}>'
+  
+  def to_dict(self):
+    return {
+      'username': self.username
+      'password': self.password
+    }
+```
+
+```python
+# app.py
+import user from User
+
+from admin import Admin
+
+a = Admin('rolf', '1234', 3)
+u = User('jose', 'password')
+a.save()
+
+users = [a, u]
+for user in users:
+  user.save()
+```
+
+### Property Setters
+
+```python
+# flight.py
+
+"""
+Flight Leg:
+2 segments...
+	GLA --> LHR, LHR --> CAN
+"""
+from typing import List
+
+class Segement:
+  def __init__(self, departure, destination): 
+    self.departure = departure # GLA
+    self.destination = destination # LHR
+
+class Flight:
+  def __init__(self, segments: List[Segement]):
+    self.segements = segements
+    
+  def __repr__(self):
+    """
+    	:return: string in format of GLA -> LHR -> CAN
+    """
+    stops = [self.segments[0], self.segments[0].destination]
+		for seg in self.segments[1:]:
+      stops.append(seg.destination)
+		return ' -> '.join(stops)
+    
+  @property
+  def departure_point(self):
+		return self.segements[0].departure
+	
+  @departure_point.setter
+  def departure_point(self, val):
+		# self.segments[0].departure = val
+    dest = self.segments[0].destination
+    self.segments[0] = Segment(departure = val, destination = dest)
+  
+
+    
+flight = Flight([Segment('GLA', "LHR")])
+print(flight)
+flight.segments[0].departure = 'EDI'
+
+#flight.departure_point = 'EDI' --> can't do this right now use a decorator with setter
+flight.departure_point = 'EDI'
+print(flight.departure_point)
 ```
 
