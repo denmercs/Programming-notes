@@ -187,35 +187,77 @@ function sum(arr) {
 
 ## BUILT-IN DATA STRUCTURES
 
-- Unordered, key value pairs!
+1. Objects (Unordered Lists)
 
-  ```javascript
-  `let instructor = {
-      firstName: "Kelly",
-      isInstructor: true,
-      favoriteNumbers: [1,2,3,4]
-  }`
-  ```
+   - Unordered, key value pairs!
 
-  
+     ```javascript
+     // Objects are fast and quick
+     let instructor = {
+           firstName: "Kelly",
+           isInstructor: true,
+           favoriteNumbers: [1,2,3,4]
+     }
+     
+     // Objects methods -- remember there is no order in objects
+     Object.keys(instructor) --> O(n)
+     Object.values("Kelly") --> O(n)
+     Object.entries(instructor) --> O(n)
+     Object.hasOwnProperty("firstname") --> O(1)
+     
+     ```
 
-When to use objects
+   - When you don't need order
 
-- When you don't need order
+   - When you need fast access / insertion and removal
 
-- When you need fast access / insertion and removal
+     ```javascript
+     Insertion -  O(1)
+     Removal -  O(1)
+     Searching -  O(n)
+     Access -  O(1)
+     ```
 
-  
+2. Arrays (Ordered Lists)
 
-  Insertion -  **O(1)**
+   - When you need order
 
-  Removal -  **O(1)**
+   - When you need fast access / insertion and removal
 
-  Searching -  **O(N)**
+     ```javascript
+     let names = ['Michael', 'Melissa', 'Andrea'];
+     								0						1					2				"Dennis" 3
+     
+     
+     
+     // inserting or removing at the beginning of the array cause the problem because of the indexes
+     // need to reindex all the elements/value in the array
+     ```
 
-  Access -  **O(1)**
+     ```javascript
+     Insertion - it depends ...
+     Removal - it depends ...
+     Searching - O(n)
+     Access - O(1)
+     ```
 
-  
+   - Remember: Push and Pop is faster than the shift / unshift
+
+   - Built in array methods
+
+     ```javascript
+     push - O(1)
+     pop - O(1)
+     shift - O(n)
+     unshift - O(n)
+     concat - O(n)
+     slice - O(n)
+     splice - O(n)
+     sort - O(n * log n)
+     forEach/map/filter/reduce/etc. - O(n)
+     ```
+
+     
 
 ## Big O of Object Methods
 
