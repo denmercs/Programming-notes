@@ -413,28 +413,31 @@ function charCount(str) {
 
 
 
-## Common Problem Solving Patterns
+# Problem Solving Patterns
 
-​	**A. Frequency Counters**
+## A. Frequency Counter
 
 - this pattern uses objects or sets to collect values/frequencies of values rather than using an array
 
 - this can often avoid the need for nested loops or O(N^2) operations with arrays / strings
 
   ```javascript
+  /* 
   Write a function called same, which accepts two arrays. The function should return true if every value in the array has it's corresponding value squared in the second array. The frequency of values must be the same.
+  */
   
   same([1,2,3], [4,1,9]) // true
   same([1,2,3], [1,9]) // false
   same([1,2,1], [4,4,1]) // false (must be same frequency)
   
-  // NAIVE SOLUTION
+  // NOT THE BEST SOLUTION
   function same(arr1, arr2){
       if(arr1.length !== arr2.length){
           return false;
       }
-      for(let i = 0; i < arr1.length; i++){
-          let correctIndex = arr2.indexOf(arr1[i] ** 2)
+    	// O(n2)
+      for(let i = 0; i < arr1.length; i++){ // --> nested loop
+          let correctIndex = arr2.indexOf(arr1[i] ** 2) //--> a loop
           if(correctIndex === -1) {
               return false;
           }
@@ -445,33 +448,55 @@ function charCount(str) {
   
   // REFACTORED
   function same(arr1, arr2){
+    	// if they don't have the same length then return false
       if(arr1.length !== arr2.length){
           return false;
       }
-      let frequencyCounter1 = {}
+  		
+    	// use an object to construct an array/string to compare each objects.
+    	let frequencyCounter1 = {}
       let frequencyCounter2 = {}
+      
+      // O(n)
+      // 2 separate loop is better than two nested loop
       for(let val of arr1){
           frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1
+        	// [1,2,3,2]
+        	// 1 = (1 || 0) + 1 ----> 1:1
+        	// 1 = NAN/0 + 1
+        	// 2 = (2 || 0) + 1 ----> 2:1
+  	      // 3 = (3 || 0) + 1 ----> 3:1
+        	// 2 = (2 || 0) + 1 ----> 2:2
+      	// result {1:1, 2:2, 3:1}
       }
       for(let val of arr2){
           frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1        
       }
       for(let key in frequencyCounter1){
+        	// if the key squared  in frequencyCounter1 is not equal in frequencycounter2
           if(!(key ** 2 in frequencyCounter2)){
               return false
           }
+        	// if frequencyCounter2 key squared is not equal frequencyCounter key.
           if(frequencyCounter2[key ** 2] !== frequencyCounter1[key]){
               return false
           }
       }
+    	console.log(frequencyCounter1);
+  	  console.log(frequencyCounter2);
       return true
   }
+  
+  same([1,2,3,2], [9,1,4,4])
+  same([1,2,3,2,5], [1,4,9,4,11]) //--> false
   ```
-
+  
   ```javascript
   ANAGRAMS
   
+  /*
   Given two strings, write a function to determine if the second string is an anagram of the first. An anagram is a word, phrase, or name formed by rearranging the letters of another, such as cinema, formed from iceman.
+  */
   
   validAnagram('', '') // true
   validAnagram('aaz', 'zza') // false
@@ -480,22 +505,26 @@ function charCount(str) {
   validAnagram('awesome', 'awesom') // false
   validAnagram('qwerty', 'qeywrt') // true
   validAnagram('texttwisttime', 'timetwisttext') // true
-  
+
   function validAnagram(arr1, arr2) {
+    //checking the length
     if(arr1.length !== arr2.length) {
       return false;
     }
   
     let lookup = {};
   
-  //  construct the object first
+  //  construct the object first using the loop
     for (let val of arr1) {
+      // if letter exists, increment, otherwise set to 1
       lookup[val] ? lookup[val] += 1 : lookup[val] = 1;
     }
   
     console.log('this is the lookup', lookup)
+    
   //  compare each character to the lookup object
     for (let val2 of arr2) {
+      // can't find letter or letter is zero then it's not an anagram
       if(!lookup[val2]) {
         return false
       } else {
@@ -504,9 +533,20 @@ function charCount(str) {
     }
     return true;
   }
+  /* {a:3, n:1, g:1, r:1, m:1} */
+  validAnagram('anagram', 'nagaram')
   ```
 
-  
+### SUMMARY
+
+- check the length first
+- Make an object for tally scoring
+- Loop the first parameter that will check to tally score like +1 or = 1.
+- Loop the second parameter and then compare the tally score to the object
+
+## B. Multiple Pointers
+
+
 
 
 
