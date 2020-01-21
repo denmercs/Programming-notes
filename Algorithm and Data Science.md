@@ -129,8 +129,9 @@ O(n2 + 5n + 8) --> O(n2)
 
   ```javascript
 // O(1) Space
-  function sum(arr) {
-  let total = 0;
+  
+function sum(arr) {
+    let total = 0;
     for(let i = 0; i < arr.length; i++) {
       total += arr[i]
     }
@@ -142,6 +143,7 @@ O(n2 + 5n + 8) --> O(n2)
   
   ```javascript
   // O(n) Space
+  
   function double(arr) {
     let newArr = [];
     for(let i = 0; i< arr.length; i++) {
