@@ -740,3 +740,211 @@ function search(array, val) {
 }
 ```
 
+
+
+# Sorting
+
+## 1. Recursion
+
+- A process (a function in our case) that calls itself
+
+it's everywhere:
+
+- JSON.parse / JSON.stringify
+- document.getElementById and DOM traversal algorithm
+- Object traversal
+- We will see it with more complex data structures
+- cleaner alternative to iteration
+
+### The Call Stack
+
+- there is a built in data structure that manages what happens when functions are invoked
+- it's a stack data structure 
+- Anytime a function is invoked it is placed (pushed) on the top of the call stack
+- When JavaScript sees the return keyword or when the function ends, the compiler will remove (pop)
+
+```javascript
+function takeShower() {
+  return "Showering!"
+}
+
+function eatBreakfast() {
+  let meal = cookFood()
+  return `Eating ${meal}`
+}
+
+function cookFood() {
+  let items = ["Oatmeal", "Eggs", "Protein Shake"]
+  return items[Math.floor(Math.random()*items.length)];
+}
+
+function wakeUp() {
+  takeShower()
+  eatBreakfast()
+  console.log("ok ready to go to work!")
+}
+
+wakeUp();
+```
+
+### First Recursive Function Example
+
+- invoke the same function with a different input until you reach your base case
+- **BASE CASE** - the condition when the recursion ends. This is the most important concept to understand.
+- Essential parts of a recursive function:
+  1. Base Case
+  2. Different Input
+
+```javascript
+// Recursion solution
+function countDown(num) {
+  // this is the base case
+	if(num <= 0) {
+		console.log("all done!");
+    return;
+	}
+  // different input
+	console.log(num);
+	num--;
+	countDown(num);
+}
+
+countDown(5)
+
+// REFACTORED without recursion
+function countDown(num) {
+  for(let i = num; i > 0; i--) {
+    console.log(i);
+  }
+  console.log('All done!')
+}
+```
+
+### Second Recursive Function Example
+
+```javascript
+/*
+	can you spot the base case?
+	do you notice the different input?
+	what would happen if we didn't return?
+*/
+
+function sumRange(num) {
+  //base case
+  if(num === 1) return 1;
+
+  // different input or recursive call
+  return num + sumRange(num - 1);
+}
+
+sumRange(3)
+/*
+	sumRange(3 + sumRange(3 - 1))
+	sumRange(3 + 2 + sumRange(2 -1))
+	sumRange(3 + 2 + 1) ===> 6
+*/
+```
+
+### Factorial Iteratively
+
+```javascript
+// not recursive solution
+function factorial(num) {
+  let total = 1;
+  for(let i = num; i > 0; i--) {
+    total *= i
+  }
+  return total;
+}
+
+factorial(3)
+
+// Recursive way
+function factorial(num) {
+  //base case
+  if(num === 1) {
+    return 1
+  }
+  // recursive call
+	return num * factorial(num - 1)
+}
+
+factorial(3)
+```
+
+### Common Recursion Pitfalls
+
+- No base case or wrong base case
+- returning the wrong recursive call
+- return in the base case was not called
+
+### Helper Method Recursion
+
+- an outer function which is not recursive and then the inner function is recursive. 
+- more straight forward
+
+```javascript
+function outer(input) {
+	let outerScopedVariable = []
+	
+	function helper(helperInput) {
+		helper(helperInput--)
+	}
+	
+	helper(input)
+	return outerScopedVariable;
+}
+
+// Helper method Recursion
+function collectOddValues(arr) {
+  let result = [];
+  
+  // this is the recursive method
+  function helper(helperInput) {
+    if(helperInput.length === 0) {
+      return;
+    }
+    if(helperInput[0] % 2 !== 0) {
+      result.push(helperInput[0])
+    }
+    helper(helperInput.slice(1))
+  }
+  helper(arr);
+  return result;
+}
+
+collectOddValues([1,2,3,4,5,6,7,8,9])
+```
+
+### Pure Recursion
+
+- the function itself is recursive and don't have any external function or no nested function
+
+```javascript
+function collectOddValues(arr) {
+	let newArr = [];
+  
+  if(arr.length === 0) {
+    return newArr;
+  }
+  if(arr[0] % 2 !== 0) {
+    newArr.push(arr[0])
+  }
+  
+  newArr = newArr.concat(collectOddValues(arr.slice(1)));
+  return newArr;
+}
+
+collectOddValues([1,2,3,4,5]);
+[1].concat(collectOddValues([2,3,4,5]))
+	[].concat(collectOddValues([3,4,5]))
+		[3].concat(collectOddValues([4,5]))
+			[].concat(collectOddValues([5]))
+				[5].concat(collectOddValues([]))
+```
+
+### Tips
+
+- For arrays, use methods like slice,the spread operator, and concat that make copies of arrays so you don't mutate them
+- Remember that strings are immutable so you will need to use methods like slice, substr, or substring to make copies of string
+- To make copies of objects use Object.assign, or the spread operator
