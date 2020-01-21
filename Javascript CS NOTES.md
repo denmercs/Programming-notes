@@ -130,6 +130,8 @@ O(n2 + 5n + 8) --> O(n2)
   ```javascript
 // O(1) Space
   
+  ```
+
 function sum(arr) {
     let total = 0;
     for(let i = 0; i < arr.length; i++) {
@@ -257,68 +259,6 @@ function sum(arr) {
      forEach/map/filter/reduce/etc. - O(n)
      ```
 
-     
-
-## Big O of Object Methods
-
-​	Object.keys -  **O(N)**
-
-​	Object.values -  **O(N)**
-
-​	Object.entries -  **O(N)**
-
-​	hasOwnProperty -  **O(1)**
-
-# ARRAYS
-
-```javascript
-let names = ["Michael", "Melissa", "Andrea"];
-
-let values = [true, {}, [], 2, "awesome"];
-```
-
-- When you need order
-
-- When you need fast access / insertion and removal (sort of....)
-
-## Big O of Arrays
-
-​	Insertion -  **It depends....**
-
-​		If it's at the end it doesn't affect at all but it's a different Big O when it inserted in the beginning index
-
-​	Removal -  **It depends....**
-
-​		If it's at the end it doesn't affect at all but it's a different Big O when it removing in the beginning index
-
-​	Searching -  **O(N)**
-
-​	Access -  **O(1)**
-
-## Big O of Array Operations
-
-​	push -  **O(1)**
-
-​	pop -  **O(1)**
-
-​	shift -  **O(N)**
-
-​	unshift -  **O(N)**
-
-​	concat -  **O(N)**
-
-​	slice -  **O(N)**
-
-​	splice -  **O(N)**
-
-​	sort -  **O(N \* log N)**
-
-​	forEach/map/filter/reduce/etc. -  **O(N)**
-
-## Limitations of Arrays
-
-​	Inserting at the beginning is not as easy as we might think! There are **more efficient** data structures for that!
-
 # Algorithm and Problem Solving Patterns
 
 - A **process** or **set of steps** to accomplish a certain task.
@@ -327,23 +267,19 @@ let values = [true, {}, [], 2, "awesome"];
 1. Device a plan for solving problems
 2. Master common problem solving patterns
 
+
+
 ## Problem solving strategies
 
-1. Understand the problem
-2. Explore Concrete Examples
-3. Break it down
-4. Solve/Simplify
-5. Look back and refactor
+### 1. Understand the problem
 
-### Understand the problem
+  - Can I restate the problem in my own words?
+  - What are the inputs that go into the problem?
+  - What are the outputs that should come from the solution to the problem?
+  - Can the outputs be determined from the inputs? In other words, do I have enough information to solve the problem? (You may not be able to answer this question until you set about solving the problem. That's okay; it's still worth considering the question at this early stage.)
+  - How should I label the important pieces of data that are a part of the problem?
 
-- Can I restate the problem in my own words?
-- What are the inputs that go into the problem?
-- What are the outputs that should come from the solution to the problem?
-- Can the outputs be determined from the inputs? In other words, do I have enough information to solve the problem? (You may not be able to answer this question until you set about solving the problem. That's okay; it's still worth considering the question at this early stage.)
-- How should I label the important pieces of data that are a part of the problem?
-
-### Explore Examples
+### 2. Explore Examples
 
 - Start with Simple Examples
 
@@ -353,25 +289,103 @@ let values = [true, {}, [], 2, "awesome"];
 
 - Explore Examples with Invalid Inputs
 
-### Break it down
+  ```javascript
+  // write a function which takes in a string and returns counts of each character in the string.
+  
+  charCount("aaaa"); // {a:4}
+  charCount("hello"); // {h:1, e:1, l:2, o:1}
+  
+  // Progress to More Complex Examples
+  "my phone number is 123456" //--> string on a number
+  "Hello hi" //--> capitalcase
+  
+  // explore examples with empty inputs and invalid inputs
+  charCount("");
+  charCount(null);
+  ```
+
+  
+
+### 3. Break it down
 
 - Explicitly write out the steps you need to take.
 
 - This forces you to think about the code you'll write before you write it, and helps you catch any lingering conceptual issues or misunderstandings before you dive in and have to worry about details (e.g. language syntax) as well.
 
-### Simplify
+  ```javascript
+  // write a function which takes in a string and returns counts of each character in the string.
+  
+  charCount("Your PIN number is 1234!")
+  /* 
+  	{
+  		1: 1,
+  		2: 1,
+  		3: 1,
+  		4: 1,
+  		b: 1,
+  		e: 1,
+  		i: 2,
+  		m: 1,
+  		n: 2,
+  		o: 1,
+  		p: 1,
+  		r: 2,
+  		s: 1,
+  		u: 2,
+  		y: 1
+  	}
+  */
+  
+  
+  function charCount(str) {
+    // do something
+    // return object with keys (lowercase and alpha numeric characters)
+    
+  }
+  
+  function charCount(str) {
+  	// make object to return at the end
+    // loop over string, for each character
+    	// if the char is a number/letter AND key in object, add one to count
+    	// if the char is a number/letter AND not in the object, add it to object and set value to 1
+    	// if character is something else (space, period, etc.) don't do anything
+    // return object at end
+  }
+  ```
 
+### 4. Solve/Simplify
+
+- solve the problem if you can't solve a simpler problem
 - Find the core difficulty in what you're trying to do
-
 - Temporarily ignore that difficulty
-
 - Write a simplified solution
-
 - Then incorporate that difficulty back in
 
-### LOOK BACK & REFACTOR
+```javascript
+function charCount(str) {
+  // do something
+  // return object with keys (lowercase and alpha numeric characters)
+  let result = {}
+  
+  for(let i = 0; i < str.length; i++) {
+    let char = str[i].toLowerCase();
+    // if the char is a number/letter AND key in object, add one to count
+    if(result[char] > 0) {
+      result[char]++;
+    }
+    // if the char is a number/letter AND not in the object, add it to object and set value to 1
+    else {
+      result[char] = 1;
+    };
+  }
+  // return object at end
+  return result
+}
+```
 
-# REFACTORING QUESTIONS
+
+
+### 5. LOOK BACK & REFACTOR
 
 - Can you check the result?
 - Can you derive the result differently?
@@ -381,7 +395,25 @@ let values = [true, {}, [], 2, "awesome"];
 - Can you think of other ways to refactor?
 - How have other people solved this problem? 
 
-## 1. Common Problem Solving Patterns
+```javascript
+function charCount(str) {
+  let obj = {};
+  for(let char of str) {
+    let char = char.toLowerCase();
+    if(/[a-z0-9]/.test(char)) {
+      obj[char] = ++obj[char] || 1;
+    }
+  }
+  return obj;
+}
+
+// Character code also works on here for time complexity
+// Non regular expressions is faster than the regular expressions
+```
+
+
+
+## Common Problem Solving Patterns
 
 ​	**A. Frequency Counters**
 
