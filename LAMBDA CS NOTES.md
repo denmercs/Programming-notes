@@ -1,4 +1,4 @@
-# Algorithm & Data Structures
+# Algorithm & Data Structures -- LAMBDA
 
 - analysis on how many operations that the computer will be needed to solve a problem
 - https://www.bigocheatsheet.com/
