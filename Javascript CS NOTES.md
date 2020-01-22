@@ -1162,7 +1162,7 @@ naiveSearch("lorie loled", "lol")
 
 
 
-# Elementary Sorting Algorithms 
+# Elementary/Quadratic Sorting Algorithms 
 
 ## (Bubble, Selection, Insertion)
 
@@ -1366,12 +1366,57 @@ function selectionSort(arr) {
 selectionSort([34,22,10,19,17]);
 ```
 
-## BIG O Complexity
+### BIG O Complexity
 
 ```javascript
 -- not efficient
 -- selection sort is better than bubble sort but still not efficient.
+```
 
+
+
+3. ## Insertion Sort
+
+   - builds up the sort by gradually creating a larger portion which is always sorted.
+
+```javascript
+/*
+	INSERTION SORT PSEUDOCODE
+	
+	- start by picking the second element in the array
+	- now compare the second element with the one before it and swap if necessary
+	- continue to the next element and if it is in the incorrect order, iterate through the sorted potion (i.e. the left side) to place the element in the correct place.
+	- repeat until the array is sorted
+*/
+
+function insertionSort(arr) {
+  for(let i = 1; i < arr.length; i++) {
+    let currentVal = arr[i];
+    for(let j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
+      if(arr[j] ) {
+        arr[j+1] = arr[j]
+      }
+      arr[j+1] = currentVal;
+    }
+  }
+  return arr;
+}
+
+insertionSort([2,1,9,76,4])
+```
+
+### BIG O Complexity
 
 ```
+O(n2)										O(n)
+Worst Case						Best Case
+```
+
+## Complexity BigO (Bubble, Sorting, Insertion)
+
+| Algorithm      | Time Complexity (Best) | Time Complexity (Average) | Time Complexity (Worst) | Space Complexity |
+| -------------- | ---------------------- | ------------------------- | ----------------------- | ---------------- |
+| Bubble Sort    | O(n)                   | O(n2)                     | O(n2)                   | O(1)             |
+| Insertion Sort | O(n)                   | O(n2)                     | O(n2)                   | O(1)             |
+| Selection Sort | O(n2)                  | O(n2)                     | O(n2)                   | O(1)             |
 
