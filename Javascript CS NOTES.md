@@ -1048,6 +1048,56 @@ Best			Average			Worst
 - **Binary search only works on sorted arrays**
 
 ```javascript
+// let's search for 6
 
+[1, 		3, 		4, 		6, 		7, 		8, 		9]
+^							^												^
+|							|												|
+left				too small								right
+
+// is 4 > 6? --> yes
+							^									^			^
+  						|									|			|
+  					left						too big	right
+// is 7 > 6 --> yes
+              ^		^				^
+  						|		|				|
+           left correct	right 
+```
+
+```javascript
+/*
+Binary Search PseudoCode
+
+- a function accepts a sorted array and a value
+- create a left pointer at the start of the array, and a right pointer at the end of the array
+- While the left pointer comes before the right pointer:
+	- create a pointer in the middle
+	- if you find the value you want, return the index
+	- if the value is too small, move the left pointer up
+	- if the value is too large, move the right ointer down
+- if you never find the value return -1
+*/
+
+function binarySearch(arr, num) {
+  let min = 0;
+  let max = arr.length -1;
+  
+  while(min <= max) {
+    let middle = Math.floor((min + max) / 2);
+    let currentElement = arr[middle];
+    
+    if(arr[middle] < num) {
+      min = middle + 1;
+    }
+    else if (arr[middle] > num) {
+      max = middle - 1;
+    }
+    else {
+      return middle;
+    }
+  }
+  return -1;
+}
 ```
 
