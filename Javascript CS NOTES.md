@@ -536,6 +536,49 @@ function charCount(str) {
   /* {a:3, n:1, g:1, r:1, m:1} */
   validAnagram('anagram', 'nagaram')
   ```
+  
+  ```javascript
+  console.log(sameFrequency(182, 281)) // true
+  console.log(sameFrequency(34, 14)) // false
+  
+  function sameFrequency(num1, num2) {
+    if(num1.length !== num2.length) {
+      return false;
+    }
+    
+    let counter = {}
+    
+    
+    num1 =  num1.toString().split("");
+    num2 = num2.toString().split("");
+    
+    for(let val of num1) {
+      val = parseInt(val);
+      counter[val] ? counter[val] += 1 : counter[val] = 1;
+    }
+    
+    for(let val2 of num2) {
+      val2 = parseInt(val2);
+      if(!counter[val2]) {
+        return false;
+      } else {
+        counter[val2] -= 1;
+      }
+      
+    }
+    return true; 
+  }
+  
+  sameFrequency(182, 281) // true
+  sameFrequency(34, 14) // false
+  sameFrequency(3589578, 5879385) // true
+  sameFrequency(22, 222) // false
+  
+  ```
+  
+  
+
+
 
 ### SUMMARY
 
@@ -948,3 +991,63 @@ collectOddValues([1,2,3,4,5]);
 - For arrays, use methods like slice,the spread operator, and concat that make copies of arrays so you don't mutate them
 - Remember that strings are immutable so you will need to use methods like slice, substr, or substring to make copies of string
 - To make copies of objects use Object.assign, or the spread operator
+
+
+
+# Linear Search
+
+list of linear search in Javascript:
+
+- indexOf
+- includes
+- find
+- findIndex
+
+```javascript
+[1,			2,			3,			4,			5]
+|start|	-->					-->					-->			// linear search from left to right
+```
+
+```javascript
+/*
+Linear Search Pseudocode
+
+- This function accepts an array and a value 
+- loop through the array and check if the current array element is equal to the value
+- if it is, return the index at which the element is found
+- if the value is never found, return -1 
+*/
+
+// time complexity --> O(n)
+function linearSearch(arr, val) {
+  for(let i = 0; i < arr.length; i++) {
+    if(arr[i] === val) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+linearSearch([34,56, 1,2], 1);
+
+
+
+```
+
+### Linear Search Big O
+
+```javascript
+O(1)			O(n)				O(n)
+Best			Average			Worst
+```
+
+# Binary Search
+
+- much faster form of search
+- rather eliminating on element at a time, you can eliminate half of the remaining element at a time
+- **Binary search only works on sorted arrays**
+
+```javascript
+
+```
+
