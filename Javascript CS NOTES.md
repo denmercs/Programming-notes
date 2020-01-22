@@ -1166,11 +1166,11 @@ naiveSearch("lorie loled", "lol")
 
 ## (Bubble, Selection, Insertion)
 
-
-
 ## Sorting
 
 https://www.toptal.com/developers/sorting-algorithms
+
+https://visualgo.net/en
 
 - sorting is the process of rearranging the items in a collection (ex. array) so that the items are in some kind of order
 - sorting numbers from smallest to largest
@@ -1196,5 +1196,114 @@ sort([23,45,6,12,13]) --> [6,12,13,23,45]
 --> ["Algorithm", "Colt", "Data Structures", "Steele"]
 
 [6,4,15,10].sort() --> [10,15,4,6]  // this is based on the character unicode
+```
+
+```javascript
+//Example:
+function numberCompare(num1, num2) {
+  return num1 - num2
+}
+
+[6,4,15,10].sort(numberCompare);
+
+// sort by the length of the string
+function compareByLen(str1, str2) {
+  return str1.length - str2.length;
+}
+
+["Steele", "Colt", "Data Structures", "Algorithm"].sort(compareByLen) 
+```
+
+1. ## Bubble Sort
+
+   - sorting algorithm where the largest values bubble up to the top
+
+```javascript
+// ES5
+function swap(arr, index1, index2) {
+  let temp = arr[index1];
+  arr[index1] = arr[index2]
+  arr[index2] = temp
+}
+
+//ES2015
+const swap = (arr, index1, index2) => {
+  [arr[index1], arr[index2]] = [arr[index2], arr[index1]]
+}
+```
+
+```javascript
+/*
+	BubbleSort Pseudocode
+	
+	- start looping from with a variable called i in the end of the array towards the beginning
+	- start an inner loop with a variable called j from the beginning until i - 1
+	- if arr[j] is greater than arr[j+1], swap those two values!
+	- return the sorted array
+*/
+
+// NOT EFFICIENT / OPTIMIZE
+function bubbleSort(arr) {
+  for(let i = arr.length; i > 0; i--) {
+    for(let j = 0; j < i - 1; j++) {
+      console.log(arr, arr[j], arr[j + 1])
+      if(arr[j] > arr[j+1]) {
+        
+        // SWAP!
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp
+      }
+    }
+  }
+  return arr;
+}
+
+// REFACTORED
+function bubleSort(arr) {
+  const swap = (arr, index1, index2) => {
+    [arr[index1], arr[index2]] = [arr[index2], arr[index1]];
+  };
+  
+  for(let i = arr.length; i > 0; i--) {
+    for(let j = 0; j < i - 1; j++) {
+      if(arr[j] > arr[j + 1]) {
+        swap(arr, j, j+1);
+      }
+    }
+  }
+  return arr;
+}
+
+bubbleSort([37, 45, 29, 8])
+
+// OPTIMIZED
+function bubbleSort(arr) {
+  let noSwaps;
+	for(let i = arr.length; i > 0; i--) {
+    noSwaps = true;
+    for(let j = 0; j < i - 1; j++) {
+      if(arr[i] > arr[j+1]) {
+        let temp = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1] = temp;
+        noSwaps = false;
+      }
+    }
+    if(noSwaps) break;
+  }
+  return arr;
+}
+
+bubbleSort([8,1,2,3,4,5,6,7])
+```
+
+
+
+## BIG O Complexity
+
+```
+O(n2)														O(n)
+worst case										Best case
 ```
 
