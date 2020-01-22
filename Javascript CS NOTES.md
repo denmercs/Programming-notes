@@ -1166,6 +1166,8 @@ naiveSearch("lorie loled", "lol")
 
 ## (Bubble, Selection, Insertion)
 
+
+
 ## Sorting
 
 https://www.toptal.com/developers/sorting-algorithms
@@ -1214,7 +1216,7 @@ function compareByLen(str1, str2) {
 ["Steele", "Colt", "Data Structures", "Algorithm"].sort(compareByLen) 
 ```
 
-1. ## Bubble Sort
+1. ## Bubble Sort (Swap Maximum)
 
    - sorting algorithm where the largest values bubble up to the top
 
@@ -1298,12 +1300,78 @@ function bubbleSort(arr) {
 bubbleSort([8,1,2,3,4,5,6,7])
 ```
 
-
-
-## BIG O Complexity
+### BIG O Complexity
 
 ```
 O(n2)														O(n)
 worst case										Best case
+```
+
+
+
+2. ## Selection Sort (Swap Minimum)
+
+   - similar to bubble sort, but instead of first placing large values into sorted position, it places small values into sorted position. 
+
+```javascript
+/* 
+	Selection Sort Pseudocode
+	
+	- store the first element as the smallest value you've seen so far
+	- compare this istem to the next item in the array until you find a smaller number
+	- if a smaller numer is found, dseignate that smaller number to be the new minimum and continue until the end of the array.
+	- if the minimum is not the value(index) you initially began with, swap the two values
+	- repeat this witht he next element until the array is sorted
+*/
+
+function selectionSort(arr) {
+  for(let i = 0; i < arr.length; i++) {
+    let lowerst = i;
+    for(let j = i+1; j < arr.length; j++) {
+      console.log(i, j);
+      if(arr[j] < arr[lowest]) {
+        lowest = j;
+      }
+    }
+    // swap
+    if(i !== lowest) {
+      let temp = arr[i];
+      arr[i] = arr[lowest];
+	    arr[lowest] = temp;    
+    }
+  }
+  return arr;
+}
+
+
+// ES2015
+function selectionSort(arr) {
+  const swap = (arr, index1, index2) => {
+    [arr[index1], arr[index2]] = [arr[index2], arr[index1]];
+  };
+  
+  for(let i = 0; i < arr.length; i++) {
+    let lowest = i;
+    for(let j = + 1; j < arr.length; j++) {
+      if(arr[lowest] > arr[j]) {
+				lowest = j;
+      }
+    }
+    if (i !== lowest) swap(arr, i, lowest)
+  }
+  return arr;
+}
+
+
+selectionSort([34,22,10,19,17]);
+```
+
+## BIG O Complexity
+
+```javascript
+-- not efficient
+-- selection sort is better than bubble sort but still not efficient.
+
+
 ```
 
