@@ -1120,3 +1120,81 @@ O(log n)																					O(1)
 worst and average case													Best Case
 ```
 
+# Naive or Basic String Search
+
+```javascript
+/*
+- suppose you want to count the number of times a smaller string appears in a longer string
+- a straightforward approach involves checking pairs of characters individually
+*/
+long string:									short string
+wowomgzomg												omg
+
+```
+
+```javascript
+PSEUDOCODE
+/*
+	- loop over the longer string
+	- loop over the shorter string
+	- if the characters don't match, break out of the inner loop
+	- if you complete the inner loop and find a match, increment the count of matches
+	- return the count
+*/
+
+function naiveSearch(long, pattern) {
+  let count = 0;
+  for(let i = 0; i < long.length; i++) {
+		for(let j = 0; j < pattern.length; j++) {
+      if(short[j] !== long[i+j]) {
+        break;
+      }
+      if(j === short.length - 1) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+
+naiveSearch("lorie loled", "lol")
+```
+
+
+
+# Elementary Sorting Algorithms 
+
+## (Bubble, Selection, Insertion)
+
+
+
+## Sorting
+
+https://www.toptal.com/developers/sorting-algorithms
+
+- sorting is the process of rearranging the items in a collection (ex. array) so that the items are in some kind of order
+- sorting numbers from smallest to largest
+- sorting names alphabetically
+- sorting movies based on release year
+- sorting movies based on revenue
+
+```javascript
+function sort(arr) {
+	return arr;
+}
+
+sort([23,45,6,12,13]) --> [6,12,13,23,45]
+
+```
+
+## Javascript has a sort method
+
+- it does, but it doesn't always work the way you expect.
+
+```javascript
+["Steele", "Colt", "Data Structures", "Algorithm"].sort() 
+--> ["Algorithm", "Colt", "Data Structures", "Steele"]
+
+[6,4,15,10].sort() --> [10,15,4,6]  // this is based on the character unicode
+```
+
