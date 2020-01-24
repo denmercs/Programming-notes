@@ -1543,7 +1543,7 @@ mergeSort([10,24,76,73,72,1,9])
 | ---------------------- | ------------------------- | ----------------------- | ---------------- |
 | O(n log n)             | O(n log n)                | O(n log n)              | O(n)             |
 
-- once you split or divide the array the complexity will be (log n)
+**NOTE: once you split or divide the array the complexity will be (log n)**
 
 2. ## Quick Sort
 
@@ -1653,7 +1653,7 @@ pivot([4,8,2,1,5,7,6,3])
 
 ```javascript
 /*
-	- call the pivot helper on the array
+- call the pivot helper on the array
 	- when the helper returns to you the updated pivot index, recursively call the pivot 
 	helper on the subarray to the left of that index, and the subarray to the right of that 
 	index
@@ -1673,7 +1673,94 @@ function quickSort(arr,  left = 0; , right = arr.length - 1) {
 quickSort([4,6,9,1,2,5,3])
 ```
 
+
+
+### Big O Complexity
+
 | Time Complexity (Best) | Time Complexity (Average) | Time Complexity (Worst) | Space Complexity |
 | ---------------------- | ------------------------- | ----------------------- | ---------------- |
 | O(n log n)             | O(n log n)                | O(n2)                   | O(log n)         |
 
+**NOTE: once you split or divide the array the complexity will be (log n)**
+
+
+
+## Comparison sorts (average time complexity):
+
+	- Bubble Sort - O(n^2)
+	- Insertion Sort - O(n^2)
+	- Selection Sort - O(n^2)
+	- Quick Sort - O(n^2)
+	- Merge Sort - O(n^2)
+
+# Radix Sort
+
+- Not making comparisons
+- special sorting algorithm that works on lists of numbers
+- it never makes comparisons between elements
+- it exploits the fact that information about the size of number is encoded in the number of digits
+- more digit means a bigger number
+
+```javascript
+/*
+Radix sort helper method
+- in order to implement radix sort, it's. helpful to build a few helper functions first:
+*/
+
+
+getDigit(num, place) - return sthe digit in num at the given place value
+
+function getDigit(num, i) {
+  return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
+}
+
+function digitCount(num) {
+  if(num === 0) return 1;
+  return Math.floor(Math.log10(Math.abs(num))) + 1;
+}
+
+function mostDigits(nums) {
+  let maxDigits = 0;
+  for (let i = 0; i < nums.length; i++) {
+    maxDigits = Math.max(maxDigits, digitCount(nums[i]));
+  }
+  return maxDigits;
+}
+```
+
+### Radix Sort Pseudocode
+
+```javascript
+/*
+	- define a function that accepts list of numbers
+	- figure out how many digits the largest number has
+	- Loop from k = 0 up to. this largest number of digits
+	- For each iteration of the loop
+			-- create buckets for each digit (0 to 9)
+			-- place each number in the corresponding bucket based on its kth digit
+  - Replace our existing array with values in our buckets, starting with 0 and going up to 9
+  - return list at the end
+*/
+
+function radixSort(nums) {
+  let maxDigitCount = mostDigits(nums);
+  
+  for(let k = 0; k < maxDigitCount; k++) {
+		let digitBuckets = Array.from({length: 10}, () => []);
+    for(let i = 0; i < nums.length; i++) {
+      let digit = getDigit(num[i], k);
+      digitBuckets[digit].push(nums[i])
+    }
+    nums = [].concat(...digitBuckets);
+  }
+  return nums;
+}
+
+radixSort([23,345,5467, 12,2345, 9852]);
+```
+
+### Big O Complexity
+
+| Time Complexity (Best) | Time Complexity (Average) | Time Complexity (Worst) | Space Complexity |
+| ---------------------- | ------------------------- | ----------------------- | ---------------- |
+| O(nk)                  | O(nk)                     | O(nk)                   | O(n + k)         |
