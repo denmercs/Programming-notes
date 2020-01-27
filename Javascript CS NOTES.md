@@ -1834,3 +1834,253 @@ radixSort([23,345,5467, 12,2345, 9852]);
 # Data Structures
 
 - collections of values, the relationships among them, and the functions or operations that can be applied to the data. 
+- the more time you spend as a developer, the more likely you'll need to use one of these data structures
+
+## Linear Data Structures
+
+- Arrays
+- Lists
+
+```javascript
+// ES2015 Class Syntax
+
+/*
+What is a class?
+  - a blue print for creating objects with predefined properties and methods
+
+*/
+```
+
+## Syntax of Classes in Javscript
+
+```javascript
+// ES2015
+
+class Student {
+  constructor(firstName, lastName, year) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.grade = year;
+    this.tardies = 0;
+    this.source = [];
+  }
+  // instance methods
+  fullName() {
+    return `Your full name is ${firstName} ${lastName}, and your grade is ${grade}`
+  }
+  markLate() {
+    this.tardies += 1;
+    return `Your ${firstName} ${lastName}, ${this.tardies} times`;
+  }
+  addScore(score) {
+    this.scores.push(score);
+    return this.scores;
+  }
+  calculateAverage() {
+    let sum = this.scores.reduce(function(a, b){return a + b});
+    return sum/this.scores.length;
+  }
+  // not common (adding class methods)
+  static enrollStudents(...students) {
+    // maybe send an email here
+    return "Enrolling Students!";
+  }
+}
+
+let firstStudent = new Student("Colt", "Steele");
+let secondStudent = new Student("Dennis", "Mercado");
+let emil = new Student("Emil", 'Test', 90)
+
+firstStudent.markLate(); //1 time
+firstStudent.markLate(); // 2 time
+secondStudent.addScore(92)
+secondStudent.addScore(87)
+secondStudent.scores //[92, 87]
+secondStudent.calculateAverage();
+Student.enrollStudent();
+
+// one gotcha with 'this'
+/*
+	Inside all of our instance methods and constructor, the keyword 'this' refers to the object created from that class (also known as an instance)
+*/
+
+
+```
+
+
+
+# Linked List
+
+- a data structure tha tcontains a **head**, **tail** and **length** property.
+- Linked lists consist of nodes , and each node has a value and a pointer to another node or null
+- useful for insertion and deletion
+
+## Singly Linked Lists
+
+![Screen Shot 2020-01-27 at 3.54.03 PM](/Users/dennismercado/Desktop/Programmer/Notes/Screen Shot 2020-01-27 at 3.54.03 PM.png)
+
+## Comparisons with arrays
+
+LISTS
+
+- don't have indexes
+- connected via nodes with a next pointer
+- random access is not allowed
+
+ARRAYS
+
+- indexed in order
+- insertion and deletion can be expensive
+- can quickly be accessed at a specific index
+
+| Operations | Array | Linked List |
+| ---------- | ----- | ----------- |
+| Access     | O(1)  | O(n)        |
+| delete     | O(n)  | O(1)        |
+| insert     | O(n)  | O(1)        |
+| search     | O(n)  | O(n)        |
+
+
+
+## Push/Pop/Shift/Unshift/Get/Set/Insert/Remove/Reverse
+
+```javascript
+// piece of data - val
+// reference to next node - next
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.next = null
+  }
+}
+
+class SinglyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+  // ---->>> PUSH
+  push(val) {
+    /**
+    	pseudocode
+    	- this function should accept a value
+    	- create a new node using the value passed to the function
+    	- if there is no head property on th elist, set the head and tail to be the newly 
+    	created node
+    	- Otherwise set the next property on the tail to be the new node and set the tail 
+    	property  on the list to be the newly created node
+    	- increment the length by one
+    	- return the linked list
+    **/
+    let newNode = new Node(val);
+    if(!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  
+  /* Example of traversing 
+  traverse() {
+    let current = this.head;
+    while(current) {
+      console.log(current.val);
+      current = current.next;
+    }
+  }
+  */
+
+  // ---->>> POP
+  pop() {
+    /** 
+      pseudocode
+      - if there are no nodes in the list, return undefined
+      - loop through the list until you reach the tail
+      - set the next property of the 2nd to last node to be null
+      - set the tail to be the 2nd to last node
+      - decrement the length of the list by 1
+      - return the value of the node removed
+    **/
+    if(!this.head) return undefined;
+    let current = this.head;
+    let newTail = current;
+    
+    while(current.next) {
+      newTail = current;
+      current = current.next;
+    }
+    this.tail = newTail;
+    this.tail.next = null;
+		this.length--;
+
+    if(this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+    return current;
+  }
+  
+  // ---->>> SHIFT
+  shift() {
+    /** Pseudocode
+    	- if there are no nodes, return undefined
+    	- store the current head property in a variable
+    	- set the head property to be the current head's next property
+    	- decrement the length by 1
+    	- return the value of the node removed
+    **/
+    if(!this.head) return undefined;
+    let currentHead = this.head;
+    this.head = currentHead.next;
+    this.length--;
+    if(this.length === 0) {
+      this.tail = null;
+    }
+    return currentHead;
+  }
+  
+  // ---->>> UNSHIFT
+  unshift(val) {
+    /** Pseudocode
+    	- this funciton should accept a value
+    	- create a new node using the value passed to the function 
+    	- if there is no head property on the list, set the head and tail to be the newly 
+    	created node
+    	- otherwise set the newly created node's next property to be the current head property 
+    	on the list
+    	- set the head property on the list to be that newly created node
+    	- increment the length of the list by 1
+    	- return the linked list 
+    **/
+    let newNode = new Node(val);
+    if(!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      newNode.next = this.head;
+	    this.head = newNode;    
+    }
+    this.length++;
+    return this;
+  }
+}
+
+/*
+let first = new Node("Hi");
+first.next = new Node("there");
+first.next.next = new Node("how");
+first.next.next.next = new Node("are");
+first.next.next.next.next = new Node("you");
+*/
+
+let list = new SinglyLinkedList();
+list.push("Hello");
+list.push("Goodbye");
+list.push("!");
+```
+
