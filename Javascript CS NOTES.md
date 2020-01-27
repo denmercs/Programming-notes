@@ -1029,10 +1029,31 @@ function linearSearch(arr, val) {
 }
 
 linearSearch([34,56, 1,2], 1);
+```
 
 
+
+```python
+names = [
+  'Artem',
+  'Austin',
+  'Chad',
+  'Dustin',
+  'Elissa',
+  'Emily',
+  'Jamar',
+  'Katherine'
+]
+
+def linear_search(array, value):
+  for name in array:
+    if name == value:
+      return True
+  return False
 
 ```
+
+
 
 ### Linear Search Big O
 
@@ -1112,6 +1133,47 @@ function binarySearch(arr, elem) {
 
 binarySearch([2,5,6,9,13,15,28,30], 103)
 ```
+
+```python
+names = [
+  'Artem',
+  'Austin',
+  'Chad',
+  'Dustin',
+  'Justin',
+  'Elissa',
+  'Emily',
+  'Jamar',
+  'Katherine'
+]
+
+def binary_search(array, value):
+	start = 0
+  end = len(array) - 1
+  
+  found = False
+  
+  while not found and start <= end:
+      middle = (start + end) // 2
+      
+      # if found break
+      if array[middle] == value:
+        found = True
+      else:
+        if value < array[middle]:
+          # search lower half
+          end = middle - 1
+        else:
+          # search upper half
+          end = middle + 1
+
+	return found
+      
+
+
+```
+
+
 
 ## Binary Search Big O
 
@@ -1404,6 +1466,8 @@ function insertionSort(arr) {
 
 insertionSort([2,1,9,76,4])
 ```
+
+
 
 ### BIG O Complexity
 
@@ -1764,3 +1828,9 @@ radixSort([23,345,5467, 12,2345, 9852]);
 | Time Complexity (Best) | Time Complexity (Average) | Time Complexity (Worst) | Space Complexity |
 | ---------------------- | ------------------------- | ----------------------- | ---------------- |
 | O(nk)                  | O(nk)                     | O(nk)                   | O(n + k)         |
+
+
+
+# Data Structures
+
+- collections of values, the relationships among them, and the functions or operations that can be applied to the data. 
