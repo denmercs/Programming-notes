@@ -1915,7 +1915,7 @@ Student.enrollStudent();
 - Linked lists consist of nodes , and each node has a value and a pointer to another node or null
 - useful for insertion and deletion
 
-## Singly Linked Lists
+## Singly Linked Lists (next value)
 
 ![Screen Shot 2020-01-27 at 3.54.03 PM](/Users/dennismercado/Desktop/Programmer/Notes/Screen Shot 2020-01-27 at 3.54.03 PM.png)
 
@@ -2068,7 +2068,125 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
-}
+  
+  // ---->>> GET
+  get(index) {
+    /** Pseudocode
+    	- this function should accept an index
+    	- if the index is less than zero or greater than or equal to the length of the list, 
+    	return null
+    	- loop through the list until you reach the index and return the node at the specific 
+    	index
+    **/
+    
+    if(index < 0 || ilndex >= this.length) return null;
+		let counter = 0;
+    let current = this.head;
+    while(counter !== index) {
+      current = current.next;
+      counter++;
+    }
+    return current;
+  }
+
+  // ---->>> SET
+  set(index, val) {
+    /** Pseudocode
+    	- this function should accept a value and an index
+    	- use your get function to find the specific node
+    	- if the node is not found, return false
+    	- if the node is found, set the value of that node to be the value passed to the 
+    	function and return true
+    **/
+    let foundNode = this.get(index);
+    if(foundNode) {
+      foundNode.val = val;
+      return true;
+    }
+    return false;
+  }
+  
+  // ---->>> INSERT
+  insert(index, val) {
+    /** Pseudocode
+    	- if the index is less than zero or greater than the length, return false
+    	- if the index is the same as the length, push a new node to the end of the list
+    	- if the index is 0, unshift a new node to the start of the list
+    	- Otherwise, using the get method, access the node at the index -1
+    	- set the next property on that node to be the new node
+    	- set the next property on the new node to be the previous next
+    	- increment the length
+    	- return true
+    **/
+    
+		if(index < 0 || index > this.length) return false;
+    if(index === this.length) return !!this.push(val);
+    if(index === 0) return this.unshift(val);
+    let newNode = new Node(val);
+    let prev = this.get(index - 1);
+    let temp = prev.next;
+    prev.next = newNode;
+    newNode.next = temp;
+    this.length++;
+    return true;
+  }
+  
+  // ---->>> REMOVE
+  remove(index, val) {
+    /** Pseudocode
+    	- if the index is less than zero or greater than the length, return undefined
+    	- if the index is the same as the length -1, pop
+    	- if the index is 0, shift
+    	- Otherwise, using the get method, access the node at the index -1
+    	- set the next property on that node to be the next of the next node
+    **/
+    if(index < 0 || index >= this.length) return undefined;
+    if(index === 0) return this.shift();
+    if(index === this.length - 1) return this.pop();
+    let previousNode = this.get(index - 1);
+    let removed = previousNode.next;
+    previousNode.next = removed.next;
+    this.length--;
+    return removed;
+  }
+  
+  // just for printing
+  print() {
+    let arr = [];
+    let current = this.head
+    while(current) {
+      arr.push(current.val);
+      current = current.next;
+    }
+  }
+  
+  // ---->>> REVERSE
+  reverse() {
+    /** Pseudocode
+    	- swap the head and tail
+    	- create a variable next
+    	- create a variable prev
+    	- create a variable node and initializze it to the head property
+    	- loop through the list
+    	- set next to be the next property on whatever node is
+    	- set the next property on the node to be whatever prev is
+    	- set prev to be the value of the node variable
+    	- set the node variable to be the value of the next variable
+    **/
+    
+ 		let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let next;
+    let prev = null;
+    for(let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
 
 /*
 let first = new Node("Hi");
