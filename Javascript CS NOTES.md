@@ -2479,3 +2479,20 @@ list.shift()
 - Access - O(n)
 - Technically searching is O(n / 2), but that's still O(n)
 
+# Stacks and Queues
+
+- last in, first out
+- the last element added to the stack will be the first element removed from the stack
+
+```javascript
+function factorial(x) {
+  x = 4
+  if (x === 0) return 1;
+  return x * factorial(x - 1);
+}
+```
+
+- there is more than one way to create a stack
+
+### Creating a stack with an array
+
