@@ -2481,7 +2481,7 @@ list.shift()
 
 # Stacks and Queues
 
-- last in, first out
+- last thing added in, and first thing going out
 - the last element added to the stack will be the first element removed from the stack
 
 ```javascript
@@ -2495,4 +2495,200 @@ function factorial(x) {
 - there is more than one way to create a stack
 
 ### Creating a stack with an array
+
+- there is more than one way of implementing a stack
+
+- Array implementation
+
+  ```javascript
+  let stack = [];
+  
+  stack.push("Google");
+  stack.push("instagram");
+  stack.push("youtube");
+  
+  stack.pop();
+  stack.push("amazon")
+  stack.pop() // google
+  ```
+
+  ```javascript
+  // remember that this will be re-indexed!
+  stack.unshift("create new file");
+  stack.unshift("resized file");
+  stack.unshift("cloned out wrinkle");
+  ```
+
+### Creating a stack with Linked List
+
+```javascript
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+/**
+	Pseudocode
+	- the function should accept a value
+	- create a new node with that value
+	- if there are no nodes in the stack, set the first and last property to be the newly 
+	created node
+	- if there is at least one node, create a variable that stores the current first property 
+	on the stack
+	- reset the first property to be the newly created node
+	- set the next property on the node to be the previously created variable
+	- increment the size of the stack by 1
+**/
+
+class Stack {
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.size = 0;
+  }
+  push(val) {
+    let newNode = new Node(val);
+    if(!this.first) {
+      this.first = newNode;
+      this.last = newNode;
+    } else {
+      let temp = this.first;
+      this.first = newNode;
+      this.first.next = temp;
+    }
+    return ++this.size;
+  }
+  pop() {
+    /**
+    	- if there are no nodes in the stack, return null
+    	- create a temporrary variable to store the first property on the stack
+    	- if there is only 1 node, set the first and last property to be null
+    	- if there is more than one node, set the first property to be the next property on 
+    	the current first
+    	- decrement the size by 1
+    	- return the value of the node removed
+    **/
+    if(!this.first) return null;
+    let temp = this.first;
+    if(this.first === this.last) {
+      this.last == null;
+    }
+    this.first = this.first.next;
+    this.size--;
+    return temp.value;
+  }
+}
+
+let stack = new Stack();
+stack.push(23);
+
+```
+
+### Big O of Stacks
+
+- insertion - O(1)
+- removal - O(1)
+- searching - O(n)
+- access - O(n)
+
+## Queues
+
+- FIFO - First IN First OUT
+
+- How do we use them in programming?
+
+  - Background tasks
+  - Uploading resources
+  - Printing / Task processing
+
+- Creating Queue in an array
+
+  ```javascript
+  let q = ["first", "second", "third"];
+  q.shift();
+  q.shift()
+  q.shirt()
+  
+  q.unshift("first")
+  q.unshift("second")
+  q.unshift("third")
+  ```
+
+- Creating a Linked List queue
+
+  ```javascript
+  class Queue {
+    constructor() {
+      this.first = null;
+      this.last = null;
+      this.size = 0;
+    }
+  }
+  
+  class Node {
+    constructor(value) {
+      this.value = value;
+      this.next = null;
+    }
+    
+    enqueue(val) {
+      /**
+      	- this function accepts some value
+      	- create a new node using that value passed to the function
+      	- if there are no nodes in the queue, set this onde to be the first and last 
+      	property of the queue
+      	- Otherwise, set the next property on the current last to be that node, and then 
+      	set the last property of the queue to be that node
+      **/
+  
+      let newNode = new Node(val);
+      if(!this.first) {
+        this.first = newNode;
+        this.last = newNode;
+      } else {
+        this.last.next = newNode;
+        this.last = newNode;
+      }
+      return ++this.size;
+    }
+    dequeue() {
+      /**
+      	- if there is no first property, just return null
+      	- store the first property in a variable
+      	- see if the first is the same as the last (check if there is only 1 node). If so, 
+      	set the first and last to be null
+      	- if there is more than 1 node, set the first property to be the next property of 
+      	first
+      	- decrement the size by 1
+      	- return the value of the node dequeued
+      **/
+      if(!this.first) return null;
+      let temp = this.first;
+      if(this.first === this.last) {
+        this.last = null;
+      }
+      this.first = this.first.next;
+      this.size--;
+      return temp.value;
+    }
+  }
+  
+  let q = new Queue()
+  
+  q.enqueue("First")
+  q.enqueue("Second")
+  q.enqueue("Third")
+  
+  q.dequeue();
+  q.dequeue();
+  ```
+
+  ### Big O of queues
+
+  - insertion - O(1)
+  - removal - O(1)
+  - searching - O(n)
+  - access - O(n)
 
