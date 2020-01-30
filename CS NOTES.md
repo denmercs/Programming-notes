@@ -476,3 +476,88 @@ def merge_arrays(lst1,lst2):
 print(merge_arrays([4,5,6],[-2,-1,0,7]))
 ```
 
+# Linked List
+
+## Singly Linked List
+
+- The most primitive form of the linked list data structure is the **singly linked list**.
+
+![Screen Shot 2020-01-30 at 10.54.49 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 10.54.49 AM.png)
+
+- As you can see in the illustration above, a linked list is formed by **Nodes** which are linked together like a chain. Each Node holds data along with a forward pointer to the next Node in the list. The absence of a backwards pointer implies that there is a uni-directional link, i.e., the whole list points in one direction and cannot point backwards. This is why it is called a singly linked list.
+
+  1. Node Class
+
+     The Node class has two components:
+
+     - **Data** - the value you want to store in the node. Think of it as the value at a specific index in a list. The data type can range from *string* or *integer* to a custom class.
+     - **Pointer** - refers us to the next Node in the list. It is essential for connectivity.
+
+     ```python
+     class Node:
+       def __init__(self, data):
+         self.data = data
+         self.next_element = None
+     ```
+
+  2. LinkedList Class
+
+     - The linked list itself is a collection of Node objects which we defined above. To keep track of the list, we need a pointer to the first Node in the list.
+
+       This is where the principle of the **head** Node comes in. The head does not contain any data and only points to the beginning of the list. This means that, for any operations on the list, we need to traverse it from the head (the start of the list) to reach our desired list Node.
+
+     ```python
+     class LinkedList:
+       def __init__(self):
+         self.head_node = None
+     ```
+
+  Difference of LinkedList and Lists
+
+  - The main difference between normal Python lists and linked lists is memory allocation. A list instantiates a fixed block of memory based on the size we define in its declaration.
+
+    On the other hand, a linked list can access or release memory based on the addition and deletion elements. Its size is not fixed.
+
+  - Other differences can be observed in the way elements are inserted and deleted. Linked list insertion and deletion happens in a constant amount of time, while in case of lists it takes *O(n)* time to insert or delete a value because you have to shift the list elements left or right after that operation. In case of accessing an element, for a list it takes constant time to access an index, while in case of a linked list you will have to iterate the list from start till you find the node with the correct value.
+
+    | Operations      | LinkedList | Array |
+    | --------------- | ---------- | ----- |
+    | access          | O(n)       | O(1)  |
+    | insert(at head) | O(1)       | O(n)  |
+    | delete(at head) | O(1)       | O(n)  |
+
+  # Trees
+
+  Trees consist of vertices (nodes) and edges that connect them. They are similar to Graphs, except that a **cycle** cannot exist in a Tree - they are **acyclic**. In other words, there is always exactly one path between any two nodes
+
+  - **Root Node**: A node with no parent nodes. Generally, trees don’t *have* to have a root. However, **rooted trees** have one distinguished node and are largely what we will use in this course.
+
+  - **Child Node**: A Node which is linked to an upper node (*Parent Node*)
+
+  - **Parent Nodes**: A Node that has links to one or more child nodes which contains one or more *Child Nodes*
+
+  - **Sibling Node**: Nodes that share same *Parent Node*
+
+  - **Leaf Node**: A node that doesn’t have any *Child Node*
+
+  - **Ancestor Nodes**: the nodes on the path from a node *d* to the root node. Ancestor nodes include node *d*’s parents, grandparents, and so on
+
+    ![Screen Shot 2020-01-30 at 11.15.29 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.15.29 AM.png)
+
+    ## Other Terminologies and Formulas
+
+    - **Sub-tree**: For a particular non-leaf node, a collection of nodes, essentially the tree, starting from its child node. The tree formed by a node and its descendants.
+    - **Degree of a node**: Total number of children of a node
+    - **Length of a path**: The number of edges in a path
+    - **Depth of a node \*n\***: The length of the path from a node *n* to the root node. The depth of the root node is 0.
+    - **Level of a node \*n\***: (Depth of a Node)+1
+    - **Height of a node \*n\***: The length of the path from *n* to its deepest descendant. So the height of the tree itself is the height of the root node and the height of leaf nodes is always 0.
+    - **Height of a Tree**: Height of its root node
+
+    ![Screen Shot 2020-01-30 at 11.17.38 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.17.38 AM.png)
+
+    ![Screen Shot 2020-01-30 at 11.18.31 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.18.31 AM.png)
+
+  - What makes a tree 'balanced'?
+
+    

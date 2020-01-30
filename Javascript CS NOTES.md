@@ -2692,3 +2692,321 @@ stack.push(23);
   - searching - O(n)
   - access - O(n)
 
+# Tree
+
+- branching structures
+
+- trees are nonlinear
+
+  ![Screen Shot 2020-01-30 at 11.32.16 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.32.16 AM.png)
+
+  ![Screen Shot 2020-01-30 at 11.32.21 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.32.21 AM.png)
+
+  ![Screen Shot 2020-01-30 at 11.32.54 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.32.54 AM.png)
+
+  ​	
+
+  - Root - the top node in a tree
+  - Child - a node directly connected to another node when moving away from the root
+  - Parent - the converse notion of a child
+  - Siblings - a group of nodes with the same parent
+  - Leaf - a node with no children
+  - Edge - the connection between one node and another
+
+  
+
+  ## Kinds of trees
+
+  ![Screen Shot 2020-01-30 at 11.49.24 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.49.24 AM.png)
+
+  NOTE: At most 2 child on a tree to be valid as a binary tree
+
+  - every parent node has at most two children
+  - every node to the left of a parent node is always less than the parent
+  - every node to the right of a parent node is always greater than the parent
+
+  ```javascript
+  class Node {
+    constructor(value) {
+      this.value = value;
+      this.left = null;
+      this.right = null;
+    }
+  }
+  
+  let tree = new BinarySearchTree();
+  `
+  tree.root = new Node(10);
+  tree.root.right = newNode(15);
+  tree.root.left = newNode(7);
+  tree.root.left.right = newNode(9);
+  `
+  
+  // INSERTING
+  /* Pseudocode 
+  	- create a new node
+  	- starting at the root
+  		-- check if there is a root, if not the root now becomes that new node!
+  		-- if there is a root check if the value of the new node is greater than 
+  		or less than in the value of the root
+  		-- if it is greater
+  			-- check to see if there is a node to the right
+  				-- if there is, move to that node and repeater these steps
+  				-- If there is not, add that node as the right property
+      -- if it is less
+      	-- check to see if there is a node to th eleft
+      		-- if there is, move to that node and repeat these steps
+      		-- if there is not, add that node as the left property
+  */
+  
+  class BinarySearchTree {
+    constructor() {
+      this.root = null;
+    }
+    
+    insert(value) {
+      let newNode = new Node(value);
+      if(this.root === null) {
+        this.root = newNode;
+        return this;
+      } else {
+        let current = this.root;
+        while(true) {
+          if(value === current.value) return undefined;
+          if(value < current.value) {
+            if(current.left === null) {
+              current.left = newNode;
+              return this;
+            }
+            else {
+              current = current.left;
+            }
+          } else if (value > current.value) {
+            if(current.right === null) {
+              current.right = newNode;
+              return this;
+            } else {
+              current = current.right;
+            }
+          }
+        }
+      }
+    }
+    find(value) {
+      if(this.root === null) return false;
+      let current = this.root;
+      let found = false;
+      
+      while(!found && current) {
+        if(value < current.value) {
+          current = current.left;
+        } else if (value > current.value) {
+          current = current.right;
+        } else {
+  				return true;
+        }
+      }
+      return false;
+    }
+  }
+  
+  //		 	10
+  //		5				13
+  // 	2		7 	11 	16
+  
+  // FINDING
+  /* PSEUDOCODE
+  
+  	- starting at the root
+  		-- check if there is a root, if not, we're done searching
+  		-- if there is a root, check if the value of the new node is the value we 
+  		are looking for. If we found it, we're done!
+  		-- if not, check to see if the value is greater than or less than the 
+  		value of the root
+  		-- if it is greater
+  			--- check to see if there is a node to the right
+  				---- if there is, move to that node and repeat these steps
+  				---- if there is not, we're done searching!
+      -- if it is less
+      	--- check to see if there is a node to the left
+      		---- if there is, move to that node and repeat these steps
+      		---- if there is not, we're done searching!
+  */
+  
+  
+  
+  ```
+
+  
+
+  ## Breadth First Search
+
+  ![Screen Shot 2020-01-30 at 2.02.41 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 2.02.41 PM.png)
+
+- ```javascript
+  /*
+  	- create a queue (this can be an array) and a variable to store the values of nodes visited
+  	- place the root node in the queue
+  	- loop as long as there is anything in the queue
+  		-- dequeue a node from the queue and push the value of the node into the variable that stores the nodes
+  		-- if there is a left property on the node dequeued - add it to the queue
+  		-- if there is a right property on the node dequeued - add it to the 
+  		queue
+  	- return the variable that stores the values
+  */
+  
+  class Node {
+    constructor(value) {
+      this.value = value;
+      this.left = null;
+      this.right = null;
+    }
+  }
+  
+  
+  class BinarySearchTree {
+    constructor() {
+      this.root = null;
+    }
+  	
+    BFS() {
+    let data = [];
+    let queue = [];
+    let node = this.root;
+    
+    queue.push(this.root);
+    while(queue.length) {
+      node = queue.shift()
+      data.push(node)
+      if(node.left) queue.push(node.left);
+      if(node.right) queue.push(node.right);	
+    }
+    return data;
+  }
+  ```
+
+  ## DFS - PreOrder
+
+  ## ![Screen Shot 2020-01-30 at 2.21.03 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 2.21.03 PM.png)
+
+  ```javascript
+  class Node {
+    constructor(value) {
+      this.value = value;
+      this.left = null;
+      this.right = null;
+    }
+  }
+  
+  /**
+  	PSEUDOCODE
+  
+  	- create a variable to store the values of nodes visited
+  	- store the root of the BST in a variable called current
+  	- write a helper function which accepts a node
+  		-- push the value of the node to the variable that stores the values
+  		-- if hte node has a left property, call the helper function with the 
+  		left property on the node
+  		- if the node has a right property, call the helper function with the 
+  		right property on the node
+  	- invoke the helper function with the current variable
+  	- return the array of values
+  **/
+  
+  class BinarySearchTree {
+    constructor() {
+      this.root = null;
+    }
+  	
+  	DFSPreorder() {
+    	let data = [];
+      let current = this.root;
+      function traverse(node.value) {
+      	data.push(node);
+        if(node.left) traverse(node.left);
+        if(node.right)traverse(node.right);
+      }
+      traverse(this.root);
+      return data;
+  	}
+    
+  }
+  ```
+
+  ![Screen Shot 2020-01-30 at 2.34.20 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 2.34.20 PM.png)
+
+  ```javascript
+  /*
+  PSEUDOCODE
+  
+  	- create a variable to store the values of nodes visited
+  	- store the root of the BST in a variable called current
+  	- write a helper function which accepts a node
+    	-- if hte node has a left property, call the helper function with the 
+  		left property on the node
+  		-- if the node has a right property, call the helper function with the 
+  		right property on the node
+  		-- push the value of the node to the variable that stores the values
+  	- invoke the helper function with the current variable
+  	- return the array of values
+  	*/
+  	
+  class BinarySearchTree {
+    constructor() {
+      this.root = null;
+    }
+  	
+  	DFSPostorder() {
+    	let data = [];
+      let current = this.root;
+      function traverse(node.value) {
+        if(node.left) traverse(node.left);
+        if(node.right)traverse(node.right);
+        data.push(node);
+      }
+      traverse(this.root);
+      return data;
+  	}
+  }
+  ```
+
+  ![Screen Shot 2020-01-30 at 2.45.44 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 2.45.44 PM.png)
+
+  ```javascript
+  /**
+  PSEUDOCODE
+  
+  	- create a variable to store the values of nodes visited
+  	- store the root of the BST in a variable called current
+  	- write a helper function which accepts a node
+    	-- if hte node has a left property, call the helper function with the 
+  		left property on the node
+  				-- push the value of the node to the variable that stores the values
+  		-- if the node has a right property, call the helper function with the 
+  		right property on the node
+  	- invoke the helper function with the current variable
+  	- return the array of values
+  **/
+  
+  class BinarySearchTree {
+    constructor() {
+      this.root = null;
+    }
+  	
+  	DFSPinorder() {
+    	let data = [];
+      let current = this.root;
+      function traverse(node.value) {
+        if(node.left) traverse(node.left);
+        data.push(node);
+        if(node.right)traverse(node.right);
+      }
+      traverse(this.root);
+      return data;
+  	}
+  }
+  ```
+
+  ## Which is better?
+
+  - it depends, 
