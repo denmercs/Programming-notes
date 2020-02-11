@@ -6,9 +6,9 @@
 
 ## 1. Big O Notation
 
-<img src="/Users/dennismercado/Desktop/Programmer/Notes/Screen Shot 2020-01-20 at 12.06.54 PM.png" alt="Screen Shot 2020-01-20 at 12.06.54 PM" style="zoom: 33%;" />
+<img src="/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-20 at 12.06.54 PM.png" alt="Screen Shot 2020-01-20 at 12.06.54 PM" style="zoom: 33%;" />
 
-<img src="/Users/dennismercado/Desktop/Programmer/Notes/Screen Shot 2019-12-05 at 8.10.30 AM.png" alt="Screen Shot 2019-12-05 at 8.10.30 AM" style="zoom:33%;" />
+<img src="/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2019-12-05 at 8.10.30 AM.png" alt="Screen Shot 2019-12-05 at 8.10.30 AM" style="zoom:33%;" />
 
 - Analyzing complexity with big O can get complicated counting the operations that about to perform
 - counting operations instead of time (depends on the machine for the speed)
@@ -1917,7 +1917,7 @@ Student.enrollStudent();
 
 ## Singly Linked Lists (next value)
 
-![Screen Shot 2020-01-27 at 3.54.03 PM](/Users/dennismercado/Desktop/Programmer/Notes/Screen Shot 2020-01-27 at 3.54.03 PM.png)
+![Screen Shot 2020-01-27 at 3.54.03 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-27 at 3.54.03 PM.png)
 
 ## Comparisons with arrays
 
@@ -2204,7 +2204,7 @@ list.push("!");
 
 ## 2. Doubly Linked List
 
-![Screen Shot 2020-01-27 at 8.37.15 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-27 at 8.37.15 PM.png)
+![Screen Shot 2020-01-27 at 8.37.15 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-27 at 8.37.15 PM.png)
 
 - more memory === more flexibility
 
@@ -2698,11 +2698,11 @@ stack.push(23);
 
 - trees are nonlinear
 
-  ![Screen Shot 2020-01-30 at 11.32.16 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.32.16 AM.png)
+  ![Screen Shot 2020-01-30 at 11.32.16 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 11.32.16 AM.png)
 
-  ![Screen Shot 2020-01-30 at 11.32.21 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.32.21 AM.png)
+  ![Screen Shot 2020-01-30 at 11.32.21 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 11.32.21 AM.png)
 
-  ![Screen Shot 2020-01-30 at 11.32.54 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.32.54 AM.png)
+  ![Screen Shot 2020-01-30 at 11.32.54 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 11.32.54 AM.png)
 
   ​	
 
@@ -2717,7 +2717,7 @@ stack.push(23);
 
   ## Kinds of trees
 
-  ![Screen Shot 2020-01-30 at 11.49.24 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.49.24 AM.png)
+  ![Screen Shot 2020-01-30 at 11.49.24 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 11.49.24 AM.png)
 
   NOTE: At most 2 child on a tree to be valid as a binary tree
 
@@ -2841,7 +2841,7 @@ stack.push(23);
 
   ## Breadth First Search
 
-  ![Screen Shot 2020-01-30 at 2.02.41 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 2.02.41 PM.png)
+  ![Screen Shot 2020-01-30 at 2.02.41 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 2.02.41 PM.png)
 
 - ```javascript
   /*
@@ -2887,7 +2887,7 @@ stack.push(23);
 
   ## DFS - PreOrder
 
-  ## ![Screen Shot 2020-01-30 at 2.21.03 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 2.21.03 PM.png)
+  ## ![Screen Shot 2020-01-30 at 2.21.03 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 2.21.03 PM.png)
 
   ```javascript
   class Node {
@@ -2933,7 +2933,7 @@ stack.push(23);
   }
   ```
 
-  ![Screen Shot 2020-01-30 at 2.34.20 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 2.34.20 PM.png)
+  ![Screen Shot 2020-01-30 at 2.34.20 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 2.34.20 PM.png)
 
   ```javascript
   /*
@@ -2970,7 +2970,7 @@ stack.push(23);
   }
   ```
 
-  ![Screen Shot 2020-01-30 at 2.45.44 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 2.45.44 PM.png)
+  ![Screen Shot 2020-01-30 at 2.45.44 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 2.45.44 PM.png)
 
   ```javascript
   /**
@@ -3010,3 +3010,257 @@ stack.push(23);
   ## Which is better?
 
   - it depends, 
+
+
+
+# Hash Tables
+
+Hash tables are used to store key-value pairs, they are like arrays, but the keys are not ordered and unlike arrays, hash tables are fast for all of the following operations:
+
+- finding values
+- adding new values
+- removing values
+
+To implement a hash table, we'll be using an array. In order to look up values by key, we need a way to convert keys into valid array indices
+
+A funciton that performs this task is called a hash function
+
+![Screen Shot 2020-02-10 at 7.42.52 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-10 at 7.42.52 PM.png)
+
+
+
+### What makes a good hash?
+
+1. Fast (ie. constant time)
+2. Doesn't cluster outputs at specific indices, but distributes uniformly
+3. Deterministic (same input yields same output)
+
+```javascript
+// NOT A GOOD EXAMPLE OF HASHING
+
+// this is not fast
+function slowHash(key) {
+  for (let i = 0; i < 1000; i++) {
+    console.log('everyday i am hashing');
+  }
+  return key[0].charCodeAt(0);
+}
+
+// uniformly distributes values
+function sameHashedValue(key) {
+  return Math.floor(Math.random() * 1000)
+}
+```
+
+
+
+### Simple Hash
+
+```javascript
+let total = 0
+
+total += "hello".charCodeAt(0) - 96 // 8
+total += "hello".charCodeAt(1) - 96 // 13
+total += "hello".charCodeAt(2) - 96 // 25
+total += "hello".charCodeAt(3) - 96 // 37
+total += "hello".charCodeAt(4) - 96 // 52
+
+total // 52
+total % 11 // 8
+
+```
+
+### Hash that works on strings only
+
+```javascript
+function hash(key, arrayLen) {
+  let total = 0;
+  for(let char of key) {
+    // map 'a' to 1, 'b' to 2, 'c' to 3, etc.
+    let value = char.charCodeAt(0) - 96;
+    total = (total + value) % arrayLen;
+  }
+  return total;
+}
+
+hash('pink', 10); // 0
+hash('orangered, 10'); // 7
+hash('cyan', 10); // 3
+
+// problem with this hash
+/****
+1. only hashes strings ( we won't worry about this)
+2. not constant time - linear in key length
+3. could be a little more random
+****/
+
+// REFACTORED
+function hash(key, arrayLen) {
+  let total = 0;
+  let WEIRD_PRIME = 31;
+  
+  for(let i = 0; i < Math.min(key.length, 100); i++) {
+    let char = key[i];
+    let value = char.charCodeAt(0) - 96
+    total = (total * WEIRD_PRIME + value) % arrayLen;
+  }
+  return total;
+}
+```
+
+Prime number in the hash is helpful in spreading out the keys more uniformly. It's also helpful if the array that you're putting values into has a prime length. You don't need to know why. (Math is complicated!)
+
+### Dealing with Collisions
+
+- Even with a large array and a great hash function, collisions are inevitable.
+- there are many strategies for dealing with collisions, but we'll focus on two: 
+- - Separate Chaining
+  - Linear Chaining
+
+### A HashTable Class
+
+```javascript
+class HashTable {
+	constructor(size = 53) {
+    this.keyMap = new Array(size);
+  }
+}
+
+_hash(key) {
+  let total = 0;
+  let WEIRD_PRIME = 31;
+  for(let i = 0; i < MAath.min(key.length, 100); i++) {
+    let char = key[i];
+    let value = char.charCodeAt(0) - 96
+    total  = (total * WEIRD_PRIME + value) % this.keyMap.length;
+  }
+  return total;
+}
+```
+
+
+
+### Separate Chaining
+
+with separate chaining, at each index in our array we store values using a more sophisticated data structure (e.g. an array or a linked list)
+
+this allows us to store multiple key value pairs in the same index
+
+![Screen Shot 2020-02-10 at 9.05.48 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-10 at 9.05.48 PM.png)
+
+```javascript
+class HashTable {
+	constructor(size = 53) {
+    this.keyMap = new Array(size);
+  }
+
+_hash(key) {
+  let total = 0;
+  let WEIRD_PRIME = 31;
+  for(let i = 0; i < MAath.min(key.length, 100); i++) {
+    let char = key[i];
+    let value = char.charCodeAt(0) - 96
+    total  = (total * WEIRD_PRIME + value) % this.keyMap.length;
+  }
+  return total;
+}
+
+  /** 
+  -- PSEUDOCODE --
+  SET / GET
+
+  SET
+  1. Accepts a key and a value
+  2. Hashes the key
+  3. Stores the key-value pair in the hash table array via separate chaining
+
+  GET
+  1. Accepts a key
+  2. Hashes the key
+  3. Retrieves the key-value pair in the hash table
+  4. If the key isn't found, returns undefined
+  **/
+
+  set (key, value) {
+    let index = this._hash(key);
+		if(!this.keyMap[index]) {
+      this.keyMap[index] = [];
+    }
+    this.keyMap[index].push([key, value]);
+  }
+  get(key) {
+		let index = this._hash(key);
+    if(this.keyMap[index]) {
+			for(let i = 0; i < this.keyMap[index].length; i++) {
+        if(this.keyMap[index][i][0] === key) {
+          return this.keyMap[index][i][1]
+        }
+      }
+    }
+    return undefined;
+  }
+  
+  /** 
+  -- PSEUDOCODE --
+  KEYS / VALUES
+  
+  KEYS
+  1. Loops through the hash table array and returns an array of keys in the table
+  
+  VALUES
+  1. Loops through the hash table array and returns an array of values in the table
+  **/
+  
+  values() {
+    let valuesArr = [];
+    for(let i = 0; i < this.keyMap.length; i++) {
+      if(this.keyMap[i]) {
+        for(let j = 0; j < this.keyMap[i].length; j++) {
+					if(!valuesArr.includes(this.keyMap[i][j][1])) {
+	          valuesArr.push(this.keyMap[i][j][1])             
+          }
+        }
+      }
+    }
+    return valuesArr;
+  }
+  
+  keys() {
+    let keysArr = [];
+    for(let i = 0; i < this.keyMap.length; i++) {
+      if(this.keyMap[i]) {
+        for(let j = 0; j < this.keyMap[i].length; j++) {
+					if(!keysArr.includes(this.keyMap[i][j][0])) {
+	          keysArr.push(this.keyMap[i][j][0])             
+          }
+        }
+      }
+    }
+    return valuesArr;
+  }
+}
+
+let ht = new HashTable();
+ht.set('maroon', '#800000');
+ht.set('yellow', '#ffff00');
+ht.set('olive', '#808000');
+ht.set('salmon', '#fa8072');
+ht.set('lightcoral', '#f08080');
+ht.set('mediumvioletred', '#c71585');
+ht.set('plum', '#ddad0dd');
+ht.values();
+```
+
+
+
+### Linear Probing
+
+with linear probing, when we find a collision, we search through the array to find the next empty slot. Unlike with separate chaining, this allows us to store a single key-value at each index.
+
+![Screen Shot 2020-02-10 at 9.07.55 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-10 at 9.07.55 PM.png)
+
+## Big O of Hash Tables
+
+- Insert: O(1)
+- Deletion: O(1)
+- Access: O(1)
