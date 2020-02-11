@@ -86,17 +86,25 @@ Consider an example of a brute force search algorithm implemented in a robot to 
 
 # Common Complexities Scenarios
 
-![Screen Shot 2020-01-29 at 12.01.51 PM](/Users/dennismercado/Desktop/Programmer/Notes/Screen Shot 2020-01-29 at 12.01.51 PM.png)
+![Screen Shot 2020-01-29 at 12.01.51 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-29 at 12.01.51 PM.png)
 
-![Screen Shot 2020-01-29 at 12.01.58 PM](/Users/dennismercado/Desktop/Programmer/Notes/Screen Shot 2020-01-29 at 12.01.58 PM.png)
+![Screen Shot 2020-01-29 at 12.01.58 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-29 at 12.01.58 PM.png)
 
-![Screen Shot 2020-01-29 at 12.02.09 PM](/Users/dennismercado/Desktop/Programmer/Notes/Screen Shot 2020-01-29 at 12.02.09 PM.png)
+![Screen Shot 2020-01-29 at 12.02.09 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-29 at 12.02.09 PM.png)
 
-![Screen Shot 2020-01-29 at 12.02.14 PM](/Users/dennismercado/Desktop/Programmer/Notes/Screen Shot 2020-01-29 at 12.02.14 PM.png)
+![Screen Shot 2020-01-29 at 12.02.14 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-29 at 12.02.14 PM.png)
 
-![Screen Shot 2020-01-29 at 12.02.19 PM](/Users/dennismercado/Desktop/Programmer/Notes/Screen Shot 2020-01-29 at 12.02.19 PM.png)
+![Screen Shot 2020-01-29 at 12.02.19 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-29 at 12.02.19 PM.png)
 
-![Screen Shot 2020-01-29 at 12.02.27 PM](/Users/dennismercado/Desktop/Programmer/Notes/Screen Shot 2020-01-29 at 12.02.27 PM.png)
+![Screen Shot 2020-01-29 at 12.02.27 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-29 at 12.02.27 PM.png)
+
+
+
+
+
+
+
+
 
 # List
 
@@ -236,6 +244,46 @@ print(string1, string2)
 ## Arrays
 
 - In Python, an array is just an ordered sequence of homogeneous elements. In other words, an array can only hold elements of one datatype. Python arrays are basically just wrappers for C arrays. The type is constrained and specified at the time of creation.
+- sequence of elements of the same type stored in a contiguous block of memory
+
+### Declaring an array
+
+- determine how big the array needs to be
+  - an integer is 4-bytes, so the array needs to be 16-bytes
+- request a block of memory that will fit the array
+  - request 16-bytes of memory from the computer
+- receive the memory address of the reserved block
+  - receive an address to the start of 16-bytes of reserved memory
+- write your values into the array
+  - write the values of 2,3,4 and 5 into the array
+
+![Screen Shot 2020-02-09 at 8.46.01 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-02-09 at 8.46.01 PM.png)
+
+- to access an index in the array:
+  - index * sizeof(type) + start_address
+
+## What is a Python List
+
+- Python lists are arrays with  a lot of built-in functionality
+
+### How do you add an element to the end of the array?
+
+- take the size of your current array and increase it by one element
+- request a block of memory of the new size
+- copy each element from the old space to the new space one at a time
+- Free the memory from the old array
+  - this is an O(n) operation!
+
+
+
+### How does Python add an element to the end of a list?
+
+- Python will allocate a few empty spaces each time the array grows
+- Each time it grows, it allocates a bit more extra spaces than the previous
+- Adding an element to the end of a list is usually O(1) but sometimes O(n)
+- On average, can be considered O(1)
+
+![Screen Shot 2020-02-09 at 9.01.19 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-02-09 at 9.01.19 PM.png)
 
 ### Initializing Arrays
 
@@ -284,7 +332,20 @@ print(NumberArray[5:])  # 6th to end
 print(NumberArray[:])   # beginning to end
 ```
 
+### How does Python add an element to the BEGINNING of a list?
+
+- Check if there's any empty space at the end of the array
+- if not:
+  - Allocate a new array, place the first element and copy over the rest
+  - Free memory from the old array
+- If so:
+  - Starting from the back, move each element to the right one space
+  - Place the new element in the first position
+- This is an O(n) operation no matter what!
+
 - Changing or adding array elements  - Arrays are mutable; their elements can be changed in the same way as list elements.
+
+  ![Screen Shot 2020-02-09 at 9.25.06 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-02-09 at 9.25.06 PM.png)
 
 ```python
 import array
@@ -353,6 +414,124 @@ print(IntegerArray)   # array('i', [10, 11, 12, 13])
 print(IntegerArray.pop(2))   # Output: 12
 print(IntegerArray)   # array('i', [10, 11, 13])
 ```
+
+## Example Code of Dynamic Array
+
+```python
+class DynamicArray:
+  def __init__(self, size = 8):
+    self.count = 0
+    self.size = size
+    
+    self.storage = [None] * self.size
+ 
+# [None, None, None, None]
+# value: 1
+
+ def append(self, value):
+    if self.count == self.size:
+      # TODO: increase size
+      print("Error: Array is full")
+      return
+      
+    self.storage[self.count] = value
+    self.count += 1
+	
+  # TODO cehck if we need to resize
+  # [1,2,3,4, None]
+	def insert(self, value, idx):
+    
+    if idx >= self.count:
+      #TODO: better error handling
+      print("Error: Index out of bounds")
+      return
+    
+    # resize if we need
+     if self.count == self.size:
+			print("Error: Array is full")
+      return
+      
+     # move everything over by one
+     for i in range(self.count, idx, -1):
+      self.storage[i] = self.storage[i - 1]
+      
+      self.storage[idx] = value
+      
+      self.count += 1
+    
+  
+  def resize():
+    self.size *= 2
+    
+    # make a new array, which double the size of the old array
+    # [None, None, None, None, None, None, None, None]
+    
+    temp_storage = [None] * self.size
+    
+    # copy everything into the new arra
+    for idx in range(self.size / 2):  # can also use self.count
+    	temp_storage[idx] = self.storage[idx]
+    
+    self.storage = temp_storage
+  
+  
+  {
+    array: [None, None, None, None],
+    hashFunction: ()
+  }
+  
+  def myHash1(key):
+    return len(key) % length_of_array
+  
+  # dog --> 3
+  
+  # Pro:
+  # - deterministic
+  # - non-invertible, one-way function
+  
+  # Con:
+  # - output not unique!
+  
+  def myHash2(key):
+    output_index = (len(key) * salt) % length_of_array
+    
+    return output_index
+  
+  # pro:
+  # - deterministic
+  # - none -invertible
+  # - pretty unique
+  
+  def djb2(key):
+    # some prime number
+    our_salt = 5381
+    
+    # scramble each letter
+    for char in key:
+      hash_value = (our_salt << 5) our_salt + char
+    
+    return hash_value
+      
+```
+
+```python
+import hashlib
+
+key = b'str'
+
+my_string = 'this is normal string. nothing to see here'.encode()
+
+for i in range(10):
+	hashed = hashlib.sha256(key).hexdigest()
+	print(hashed)
+  
+for i in range(10):
+  hashed = hash = key
+  print(hashed)
+
+```
+
+
 
 ## Difference of Lists vs Arrays
 
@@ -526,38 +705,479 @@ print(merge_arrays([4,5,6],[-2,-1,0,7]))
     | insert(at head) | O(1)       | O(n)  |
     | delete(at head) | O(1)       | O(n)  |
 
-  # Trees
+    ### Primary Operations generally part of LinkedList
 
-  Trees consist of vertices (nodes) and edges that connect them. They are similar to Graphs, except that a **cycle** cannot exist in a Tree - they are **acyclic**. In other words, there is always exactly one path between any two nodes
+    - `get_head()` - returns the head of the list
+    - `insert_at_tail(data)` - inserts an element at the end of the linked list
+    - `insert_at_head(data)` - inserts an element at the start/head of the linked list
+    - `delete(data)` - deletes an element with your specified value from the linked list
+    - `delete_at_head()` - deletes the first element of the list
+    - `search(data)` - searches for an element in the linked list
+    - `is_empty()` - returns true if the linked list is empty
 
-  - **Root Node**: A node with no parent nodes. Generally, trees don’t *have* to have a root. However, **rooted trees** have one distinguished node and are largely what we will use in this course.
+  - ```python
+    class Node:
+      def __init__(self, data):
+        self.data = data
+        self.next_element = None
+        
+    class LinkedList:
+      def __init__(self):
+        self.head_node = None
+      
+      def get_head(self): # Time Complexity --> O(1)
+        return self.head_node
+      
+      def is_empty(self): # Time Complexity --> O(1)
+        if self.head_node == None:
+          return True
+        else:
+          return False
+      
+    lst = LinkedList();
+    print(lst.get_head()); 
+    # Returns None since headNode does not contain any data
+    ```
 
-  - **Child Node**: A Node which is linked to an upper node (*Parent Node*)
+    ## Insertion
 
-  - **Parent Nodes**: A Node that has links to one or more child nodes which contains one or more *Child Nodes*
+    - types of insertion strategies used in singly linked list:
+      - Insertion at the head -  we want to insert a new element as the first element of the list.
+      - Insertion at the tail
+      - Insertion at the n-th index
 
-  - **Sibling Node**: Nodes that share same *Parent Node*
+    ![Screen Shot 2020-01-30 at 4.01.26 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 4.01.26 PM.png)
 
-  - **Leaf Node**: A node that doesn’t have any *Child Node*
+    ![Screen Shot 2020-01-30 at 4.01.47 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 4.01.47 PM.png)
 
-  - **Ancestor Nodes**: the nodes on the path from a node *d* to the root node. Ancestor nodes include node *d*’s parents, grandparents, and so on
+    ![Screen Shot 2020-01-30 at 4.01.54 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 4.01.54 PM.png)
 
-    ![Screen Shot 2020-01-30 at 11.15.29 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.15.29 AM.png)
+    ![Screen Shot 2020-01-30 at 4.02.03 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 4.02.03 PM.png)
 
-    ## Other Terminologies and Formulas
+    ![Screen Shot 2020-01-30 at 4.02.11 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 4.02.11 PM.png)
 
-    - **Sub-tree**: For a particular non-leaf node, a collection of nodes, essentially the tree, starting from its child node. The tree formed by a node and its descendants.
-    - **Degree of a node**: Total number of children of a node
-    - **Length of a path**: The number of edges in a path
-    - **Depth of a node \*n\***: The length of the path from a node *n* to the root node. The depth of the root node is 0.
-    - **Level of a node \*n\***: (Depth of a Node)+1
-    - **Height of a node \*n\***: The length of the path from *n* to its deepest descendant. So the height of the tree itself is the height of the root node and the height of leaf nodes is always 0.
-    - **Height of a Tree**: Height of its root node
+    ![Screen Shot 2020-01-30 at 4.02.17 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 4.02.17 PM.png)
 
-    ![Screen Shot 2020-01-30 at 11.17.38 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.17.38 AM.png)
+    ![Screen Shot 2020-01-30 at 4.02.23 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 4.02.23 PM.png)
 
-    ![Screen Shot 2020-01-30 at 11.18.31 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.18.31 AM.png)
+    ![Screen Shot 2020-01-30 at 4.02.30 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 4.02.30 PM.png)
 
-  - What makes a tree 'balanced'?
+  
 
+  	### 	A. Insertion at the head
+
+  ​	
+
+  ```python
+  class Node:
+    def __init__(self, data):
+      self.data = data
+      self.next_element = None
+      
+  class LinkedList:
+    def __init__(self):
+      self.head_node = None
     
+    def insert_at_head(self, data):
+      temp_node = Node(data)
+      temp_node.next_element = self.head_node
+      self.head_node = temp_node
+      return self.head_node
+    
+    def is_empty(self): # Time Complexity --> O(1)
+      if self.head_node == None:
+        return True
+      else:
+        return False
+      
+    #Supplementary print function    
+    def print_list(self): 
+      if(self.is_empty()):
+        print("List is Empty")
+        return False   
+      temp=self.head_node    
+      while temp.next_element is not None:
+       print(temp.data , end = " -> ")
+       temp=temp.next_element    
+      print(temp.data , "-> None")
+      return True    
+    
+  lst = LinkedList();
+  print(lst.get_head()); 
+  # Returns None since headNode does not contain any data
+  ```
+
+  
+
+  ![Screen Shot 2020-01-30 at 4.15.30 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 4.15.30 PM.png)
+
+  ![Screen Shot 2020-01-30 at 4.15.38 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 4.15.38 PM.png)
+
+  ![Screen Shot 2020-01-30 at 4.15.43 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 4.15.43 PM.png)
+
+  ![Screen Shot 2020-01-30 at 4.15.50 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 4.15.50 PM.png)
+
+  
+
+  ### B. Insertion at tails
+
+  ```python
+  class Node:
+    def __init__(self, data):
+      self.data = data
+      self.next_element = None
+      
+  class LinkedList:
+    def __init__(self):
+      self.head_node = None
+    
+     #Inserts a value at the end of the list  
+    def insert_at_tail(lst,value): ###---> O(n)
+      #Creating a new node 
+      new_node = Node(value)
+  
+      #Checking to see if the list is empty, if it is simply point head to new node      
+      if lst.get_head() is None:
+        lst.head_node = new_node
+        return
+  
+      #if list not empty, traverse the list to the last node
+      temp = lst.get_head()
+  
+      while temp.next_element is not None:
+        temp = temp.next_element
+  
+      #Set the nextElement of the previous node to new node
+      temp.next_element = new_node
+      return
+    
+    def is_empty(self): # Time Complexity --> O(1)
+      if self.head_node == None:
+        return True
+      else:
+        return False
+      
+    #Supplementary print function    
+    def print_list(self): 
+      if(self.is_empty()):
+        print("List is Empty")
+        return False   
+      temp=self.head_node    
+      while temp.next_element is not None:
+       print(temp.data , end = " -> ")
+       temp=temp.next_element    
+      print(temp.data , "-> None")
+      return True    
+    
+  lst = LinkedList();
+  print(lst.get_head()); 
+  # Returns None since headNode does not contain any data
+  
+  ```
+
+  
+
+  
+
+## Common Steps on LinkedList
+
+- create a node
+
+- create a class: example linked_list
+
+- in very class there shoud be a head
+
+  ```python
+  class Node: 
+    def __init__(self, data):
+      self.data = data
+      self.next = None
+      
+  class LinkedList:
+    def __init__(self):
+      self.head = Node()
+  ```
+
+- create a new node (    [ ]    )
+
+- set the head / current
+
+   
+
+  ```python
+  class LinkedList:
+    def __init__(self):
+      self.head = Node()
+      
+    def append(self, data):
+      new_node = Node(data)
+      current = self.head
+  ```
+
+- to traverse to the next node use the .next
+
+  ```python
+  class LinkedList:
+    def __init__(self):
+      self.head = Node()
+      
+    def append(self, data):
+      new_node = Node(data)
+      current = self.head
+      
+      while current.next is not None:
+        # traverse to the next node
+        current = current.next
+        
+  ```
+
+  
+
+
+
+
+
+
+
+
+
+
+
+# Trees
+
+Trees consist of vertices (nodes) and edges that connect them. They are similar to Graphs, except that a **cycle** cannot exist in a Tree - they are **acyclic**. In other words, there is always exactly one path between any two nodes
+
+- **Root Node**: A node with no parent nodes. Generally, trees don’t *have* to have a root. However, **rooted trees** have one distinguished node and are largely what we will use in this course.
+
+- **Child Node**: A Node which is linked to an upper node (*Parent Node*)
+
+- **Parent Nodes**: A Node that has links to one or more child nodes which contains one or more *Child Nodes*
+
+- **Sibling Node**: Nodes that share same *Parent Node*
+
+- **Leaf Node**: A node that doesn’t have any *Child Node*
+
+- **Ancestor Nodes**: the nodes on the path from a node *d* to the root node. Ancestor nodes include node *d*’s parents, grandparents, and so on
+
+  ![Screen Shot 2020-01-30 at 11.15.29 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.15.29 AM.png)
+
+  ## Other Terminologies and Formulas
+
+  - **Sub-tree**: For a particular non-leaf node, a collection of nodes, essentially the tree, starting from its child node. The tree formed by a node and its descendants.
+  - **Degree of a node**: Total number of children of a node
+  - **Length of a path**: The number of edges in a path
+  - **Depth of a node \*n\***: The length of the path from a node *n* to the root node. The depth of the root node is 0.
+  - **Level of a node \*n\***: (Depth of a Node)+1
+  - **Height of a node \*n\***: The length of the path from *n* to its deepest descendant. So the height of the tree itself is the height of the root node and the height of leaf nodes is always 0.
+  - **Height of a Tree**: Height of its root node
+
+  ![Screen Shot 2020-01-30 at 11.17.38 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.17.38 AM.png)
+
+  ![Screen Shot 2020-01-30 at 11.18.31 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.18.31 AM.png)
+
+- What makes a tree 'balanced'?
+
+
+
+
+
+
+
+
+# Algorithm
+
+- steps to solve a problem: UPER (Understand, Plan, Execute, Refactor)
+
+## Stack
+
+- just like the idea of stack / piling of books
+
+### Stack Operations (First In, Last out)
+
+- Push
+  - The operation to insert elements in a stack is called **push**. When we *push* the book on a stack, we put the book on the previous *top* element which means that the new book becomes the *top* element. This is what we mean when we use the *push* operation, we *push* elements onto a stack. We insert elements onto a stack and the last element to be pushed is the new *top* of the stack.
+- Pop
+  - There is another operation that we can perform on the stack, popping. Popping is when we take the top book of the stack and put it down. This implies that when we remove an element from the stack, the stack follows the *First-In, Last Out* property. This means that the top element, the last to be inserted, is removed when we perform the pop operation.
+- Peek
+  - Another thing that we can do is view the top element of the stack so we can ask the data structure: “What’s the top element?” and it can give that to us using the *peek* operation. Note that the *peek* operation does not remove the *top* element, it merely returns it.
+
+```python
+"""
+Stack Data Structure
+"""
+
+class Stack():
+  def __init__(self):
+    self.items = []
+    
+  def push(self, item): # pushing the item to the top of the stack
+    self.items.append(item) # appends adds the item to the end of the list
+    
+  def pop(self, item):
+    self.items.pop() # removing the item which is at the end of the list
+    
+  def get_stack(self):
+    return self.items
+  
+  def is_empty(self):
+    return self.items == []
+  
+  def peek(self):
+    if not self.is_empty():
+      return self.items[-1]
+  
+myStack = Stack()
+myStack.push("A")
+myStack.push("B")
+print(myStack.get_stack())
+myStack.push("C")
+print(myStack.get_stack())
+myStack.pop()
+print(myStack.get_stack())
+```
+
+```python
+from stack import Stack
+
+def is_match(p1, p2):
+    if p1 == "(" and p2 == ")":
+        return True
+    elif p1 == "{" and p2 == "}":
+        return True
+    elif p1 == "[" and p2 == "]":
+        return True
+    else:
+        return False
+
+
+def is_paren_balanced(paren_string):
+    s = Stack()
+    is_balanced = True
+    index = 0
+
+    while index < len(paren_string) and is_balanced:
+        paren = paren_string[index]
+        if paren in "([{":
+            s.push(paren)
+        else:
+            if s.is_empty():
+                is_balanced = False
+            else:
+                top = s.pop()
+                if not is_match(top, paren):
+                    is_balanced = False
+        index += 1
+
+    if s.is_empty() and is_balanced:
+        return True
+    else:
+        return False
+
+print("String : (((({})))) Balanced or not?")
+print(is_paren_balanced("(((({}))))"))
+# answer -> true
+
+print("String : [][]]] Balanced or not?")
+print(is_paren_balanced("[][]]]"))
+# answer -> false
+
+print("String : [][] Balanced or not?")
+print(is_paren_balanced("[][]"))
+# answer -> true
+```
+
+## Reverse String
+
+```python
+input_str = "Educative"
+print(input_str[::-1])
+```
+
+```python
+from stack import Stack
+def reverse_string(stack, input_str):
+  for i in range(len(input_str)):
+    stack.push(input_str[i])
+  rev_str = ""
+  while not stack.is_empty():
+    rev_str += stack.pop()
+
+  return rev_str
+
+stack = Stack()
+input_str = "!evitacudE ot emocleW"
+print(reverse_string(stack, input_str))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Hash
+
+- Until now, the overall time complexity accomplished by most of the data structures in **insertion**, **deletion**, and **search** was up to *O(nlogn)*, which is pretty good. But for a significantly large amount of data, this complexity starts to adversely affect the efficiency of an algorithm.
+- Hashing is a process used to store an object according to a unique key. This means that hashing always creates a **key-value pair**. A collection of such pairs forms a *dictionary* where every object or value can be looked up according to its key. Hence, the search operation can be performed in *O(1)*.
+
+## Hash Tables
+
+- If your algorithm prioritizes search operations, then a hash table is the best data structure for you. In Python, hash tables are generally implemented using lists as they provide access to elements in constant time.
+- In Python, we have several in-built types such as `set` and `dict` which can provide us the hash table functionality.
+
+![Screen Shot 2020-02-10 at 6.08.19 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-10 at 6.08.19 PM.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
