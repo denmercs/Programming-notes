@@ -14,7 +14,6 @@
   2. Count the number of times each gets executed
   3. Sum all the counts to get an equation
 
-  
 
 ## Asymptotic Analysis
 
@@ -59,6 +58,12 @@
 | Ω(n)                | ≥n                      |
 | *ω*(n)              | >n                      |
 
+
+
+<img src="/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-11 at 12.51.17 PM.png" alt="Screen Shot 2020-02-11 at 12.51.17 PM" style="zoom: 50%;" />
+
+<img src="/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-11 at 12.50.46 PM.png" alt="Screen Shot 2020-02-11 at 12.50.46 PM" style="zoom:50%;" />
+
 ## Why Big O is preferred over other notations?
 
 Consider an example of a brute force search algorithm implemented in a robot to find a red ball in a series of boxes. All these boxes contain blue balls, except one box, which contains one red ball. The robot will start searching from the first box and will keep looking until it finds a red ball or reaches the last box. The performance of this algorithm depends on which box the red ball is in, i.e., if the red ball is in a box closer to the start or the end.
@@ -100,9 +105,34 @@ Consider an example of a brute force search algorithm implemented in a robot to 
 
 
 
+### Rules:
 
+ - input >= 0
+ - functions do more work for move input
+ - drop all constants
 
+```python
+"""
+	3n  --> n
+	5n  --> n
+	10n --> n
+	50n --> n
+"""
+```
 
+- ignore lower order terms
+- ignore the base of logs
+
+```python
+"""
+1, c			 --> constant time
+log n			 --> trees
+n 				 --> once per item
+n2				 --> compare all vs all
+n!				 --> traveling sales
+
+"""
+```
 
 
 
@@ -661,60 +691,66 @@ print(merge_arrays([4,5,6],[-2,-1,0,7]))
 
 - The most primitive form of the linked list data structure is the **singly linked list**.
 
-![Screen Shot 2020-01-30 at 10.54.49 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 10.54.49 AM.png)
+![Screen Shot 2020-01-30 at 10.54.49 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 10.54.49 AM.png)
 
 - As you can see in the illustration above, a linked list is formed by **Nodes** which are linked together like a chain. Each Node holds data along with a forward pointer to the next Node in the list. The absence of a backwards pointer implies that there is a uni-directional link, i.e., the whole list points in one direction and cannot point backwards. This is why it is called a singly linked list.
 
-  1. Node Class
+  
 
+  ![Screen Shot 2020-02-11 at 1.29.01 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-11 at 1.29.01 PM.png)
+
+  
+  
+1. Node Class
+  
      The Node class has two components:
-
+  
      - **Data** - the value you want to store in the node. Think of it as the value at a specific index in a list. The data type can range from *string* or *integer* to a custom class.
      - **Pointer** - refers us to the next Node in the list. It is essential for connectivity.
-
-     ```python
+    
+   ```python
      class Node:
-       def __init__(self, data):
+     def __init__(self, data):
          self.data = data
-         self.next_element = None
-     ```
+       self.next_element = None
+   ```
 
   2. LinkedList Class
-
+  
      - The linked list itself is a collection of Node objects which we defined above. To keep track of the list, we need a pointer to the first Node in the list.
-
+    
        This is where the principle of the **head** Node comes in. The head does not contain any data and only points to the beginning of the list. This means that, for any operations on the list, we need to traverse it from the head (the start of the list) to reach our desired list Node.
 
      ```python
-     class LinkedList:
+      class LinkedList:
        def __init__(self):
-         self.head_node = None
+       self.head_node = None
      ```
 
   Difference of LinkedList and Lists
 
   - The main difference between normal Python lists and linked lists is memory allocation. A list instantiates a fixed block of memory based on the size we define in its declaration.
-
+  
     On the other hand, a linked list can access or release memory based on the addition and deletion elements. Its size is not fixed.
-
+  
   - Other differences can be observed in the way elements are inserted and deleted. Linked list insertion and deletion happens in a constant amount of time, while in case of lists it takes *O(n)* time to insert or delete a value because you have to shift the list elements left or right after that operation. In case of accessing an element, for a list it takes constant time to access an index, while in case of a linked list you will have to iterate the list from start till you find the node with the correct value.
 
     | Operations      | LinkedList | Array |
-    | --------------- | ---------- | ----- |
+  | --------------- | ---------- | ----- |
     | access          | O(n)       | O(1)  |
     | insert(at head) | O(1)       | O(n)  |
     | delete(at head) | O(1)       | O(n)  |
-
+  
     ### Primary Operations generally part of LinkedList
-
+  
     - `get_head()` - returns the head of the list
-    - `insert_at_tail(data)` - inserts an element at the end of the linked list
+  - `insert_at_tail(data)` - inserts an element at the end of the linked list
     - `insert_at_head(data)` - inserts an element at the start/head of the linked list
     - `delete(data)` - deletes an element with your specified value from the linked list
     - `delete_at_head()` - deletes the first element of the list
     - `search(data)` - searches for an element in the linked list
     - `is_empty()` - returns true if the linked list is empty
-
+  
   - ```python
     class Node:
       def __init__(self, data):
@@ -732,18 +768,20 @@ print(merge_arrays([4,5,6],[-2,-1,0,7]))
         if self.head_node == None:
           return True
         else:
-          return False
+        return False
       
-    lst = LinkedList();
+    ```
+
+  lst = LinkedList();
     print(lst.get_head()); 
     # Returns None since headNode does not contain any data
     ```
 
-    ## Insertion
+  ## Insertion
 
-    - types of insertion strategies used in singly linked list:
+  - types of insertion strategies used in singly linked list:
       - Insertion at the head -  we want to insert a new element as the first element of the list.
-      - Insertion at the tail
+    - Insertion at the tail
       - Insertion at the n-th index
 
     ![Screen Shot 2020-01-30 at 4.01.26 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 4.01.26 PM.png)
@@ -764,7 +802,9 @@ print(merge_arrays([4,5,6],[-2,-1,0,7]))
 
   
 
-  	### 	A. Insertion at the head
+  ```
+  ### 	A. Insertion at the head
+  ```
 
   ​	
 
@@ -798,24 +838,24 @@ print(merge_arrays([4,5,6],[-2,-1,0,7]))
       temp=self.head_node    
       while temp.next_element is not None:
        print(temp.data , end = " -> ")
-       temp=temp.next_element    
+     temp=temp.next_element    
       print(temp.data , "-> None")
-      return True    
+    return True    
     
-  lst = LinkedList();
+lst = LinkedList();
   print(lst.get_head()); 
-  # Returns None since headNode does not contain any data
+# Returns None since headNode does not contain any data
   ```
 
   
 
-  ![Screen Shot 2020-01-30 at 4.15.30 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 4.15.30 PM.png)
+  ![Screen Shot 2020-01-30 at 4.15.30 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 4.15.30 PM.png)
 
-  ![Screen Shot 2020-01-30 at 4.15.38 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 4.15.38 PM.png)
+  ![Screen Shot 2020-01-30 at 4.15.38 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 4.15.38 PM.png)
 
-  ![Screen Shot 2020-01-30 at 4.15.43 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 4.15.43 PM.png)
+  ![Screen Shot 2020-01-30 at 4.15.43 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 4.15.43 PM.png)
 
-  ![Screen Shot 2020-01-30 at 4.15.50 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 4.15.50 PM.png)
+  ![Screen Shot 2020-01-30 at 4.15.50 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 4.15.50 PM.png)
 
   
 
@@ -866,9 +906,9 @@ print(merge_arrays([4,5,6],[-2,-1,0,7]))
       while temp.next_element is not None:
        print(temp.data , end = " -> ")
        temp=temp.next_element    
-      print(temp.data , "-> None")
+    print(temp.data , "-> None")
       return True    
-    
+  
   lst = LinkedList();
   print(lst.get_head()); 
   # Returns None since headNode does not contain any data
@@ -933,7 +973,13 @@ print(merge_arrays([4,5,6],[-2,-1,0,7]))
 
   
 
+## Boundary Conditions
 
+- Empty data structure
+- Single element in the data structure
+- Adding / Removing beginning of data structure
+- Adding / REmoving end of the data structure
+- Working in the middle
 
 
 
@@ -959,7 +1005,7 @@ Trees consist of vertices (nodes) and edges that connect them. They are similar 
 
 - **Ancestor Nodes**: the nodes on the path from a node *d* to the root node. Ancestor nodes include node *d*’s parents, grandparents, and so on
 
-  ![Screen Shot 2020-01-30 at 11.15.29 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.15.29 AM.png)
+  ![Screen Shot 2020-01-30 at 11.15.29 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 11.15.29 AM.png)
 
   ## Other Terminologies and Formulas
 
@@ -971,9 +1017,9 @@ Trees consist of vertices (nodes) and edges that connect them. They are similar 
   - **Height of a node \*n\***: The length of the path from *n* to its deepest descendant. So the height of the tree itself is the height of the root node and the height of leaf nodes is always 0.
   - **Height of a Tree**: Height of its root node
 
-  ![Screen Shot 2020-01-30 at 11.17.38 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.17.38 AM.png)
+  ![Screen Shot 2020-01-30 at 11.17.38 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 11.17.38 AM.png)
 
-  ![Screen Shot 2020-01-30 at 11.18.31 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/Screen Shot 2020-01-30 at 11.18.31 AM.png)
+  ![Screen Shot 2020-01-30 at 11.18.31 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-01-30 at 11.18.31 AM.png)
 
 - What makes a tree 'balanced'?
 
@@ -1135,6 +1181,65 @@ print(reverse_string(stack, input_str))
 
 - Until now, the overall time complexity accomplished by most of the data structures in **insertion**, **deletion**, and **search** was up to *O(nlogn)*, which is pretty good. But for a significantly large amount of data, this complexity starts to adversely affect the efficiency of an algorithm.
 - Hashing is a process used to store an object according to a unique key. This means that hashing always creates a **key-value pair**. A collection of such pairs forms a *dictionary* where every object or value can be looked up according to its key. Hence, the search operation can be performed in *O(1)*.
+- Functions: add, remove, lookup/find, change
+
+```python
+"""
+	Hashing
+	
+	add						--> O(1)
+	remove				--> O(1)
+	lookup/find		--> O(1)
+	change				--> O(1)
+	
+	all entries		--> O(n)
+	all keys			--> O(n)
+	all values		--> O(n)
+	
+	size					--> O(1)
+	isEmpty				--> O(1)
+	isFull				--> O(1)
+	loadFactor()	--> O(1)
+
+	CSSC010	--> 92%		--> 10
+	CSSC011	--> 100%	--> 11
+	CSSC012	--> 65%		--> 12
+	CSSC013 --> 83%		--> 13
+
+	Associative arrays
+									Array 1								Array 2
+	student id 			cssc 10				grade			92%
+	key							cssc 11				value			100%
+
+	---------	HASH FUNCTIONS	---------
+
+	hashCode(string, id)
+	remove cssc
+	convert to int
+	int - 10
+	return int	
+	
+
+		- property of the data
+		- be fast to compute
+		- if two things are 'equal'
+			should return the same value
+		- always return the same value
+			during one run at the code
+		- possible to return different values for an object in separate runs
+		
+		
+ Objects that need to overwrite
+ 	- toString
+ 	- equals
+ 	- hashCode -> object class has a hashCode needs to overwrite because it has a set of memorty 
+ 	location
+ 	- minimize collisions
+ 	
+"""
+```
+
+![Screen Shot 2020-02-11 at 4.03.54 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-11 at 4.03.54 PM.png)
 
 ## Hash Tables
 
@@ -1149,13 +1254,15 @@ The performance of a hash table depends on three fundamental factors:
 - Size of the hash table
 - Collision handling method
 
+## Restricting the Key Size
+
 A **key** is used to map a value on the list and the efficiency of a hash table depends on how a key is computed. At first glance, you may observe that we can directly use the indices as keys because each index is unique.
 
 The only problem is that the key would eventually exceed the size of the list and, at every insertion, the list would need to be resized. Syntactically, we can easily increase list size in Python, but as we learned before, the process still takes *O(n)* time at the back end.
 
 In order to limit the range of the keys to the boundaries of the list, we need a function that converts a large key into a smaller key. This is the job of the **hash function**.
 
-![Screen Shot 2020-02-10 at 6.08.19 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-10 at 6.08.19 PM.png)
+![Screen Shot 2020-02-11 at 10.14.50 AM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-11 at 10.14.50 AM.png)
 
 A hash function simply takes an item’s key and returns the corresponding index in the list for that item. Depending on your program, the calculation of this index can be a simple arithmetic or a very complicated encryption method. However, it is very important to choose an efficient hashing function as it directly affects the performance of the hash table mechanism.
 
@@ -1226,21 +1333,151 @@ Chunks:
 Hash Key: 177
 ```
 
+## Hash Functions
+
+- property of the data
+- be fast to compute
+- if two elements are "equal", should return the same value
+- Always return the same value, during one run of the code
+- possible to return different values for an object in seperate runs
+- minimize collisions
+
+```
+Hash Function
+
+hashCode (String, id)
+	remove cs
+	convert to int
+	return int
+
+Object
+	toString
+	equals
+	hashCode
+	
+```
+
+
+
+## Hash Collisions 
+
+![Screen Shot 2020-02-11 at 4.21.36 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-11 at 4.21.36 PM.png)
+
+```java
+String s = "my name is rob"
+
+char c = s.charAt(6);
+System.out.println(c);
+
+int i = s.charAt(6);
+System.out.println(i);
+output will be 9
+
+this will print the unicode
+ASCII --> unicode
+unicode
+
+0 - 9		48-57
+A - Z		65-90
+a - z		97-122
+```
+
+![Screen Shot 2020-02-11 at 4.32.19 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-11 at 4.32.19 PM.png)
+
+```java
+hashCode Strings
+
+public int hashCode(String s) {
+	int g = 31;
+	int hash = 0;
+	for(int i = 0; i < s.length; i++) {
+		hash = g * hash + s.charAt(i);
+	}
+}
+
+/*
+- use odd sized table
+- table size is a prime number
+  
+  
+8 bit two complement
+  
+  0 0 0 0 0 0 0 0 = 0
+  0 0 0 0 0 0 0 0 = 1
+  0 0 0 0 0 0 0 0 = 2
+  0 1 1 1 1 1 1 0 = 126
+  0 1 1 1 1 1 1 1 = 127
+  1 1 1 1 1 1 1 1 = -1
+  1 1 1 1 1 1 1 0 = -2
+  1 0 0 0 0 0 0 1 = - 127
+  1 0 0 0 0 0 0 0 = - 128
+  
+  
+  -1  & 0 x 7FFFFFFF --> 2147483647
+  -10 & 0 x 7FFFFFFF --> 2147483638
+  
+  */
+
+public int hashCode(String s) {
+  int hashval = data.hashCode(s);
+  hashval = hashval & 0x7FFFFFFF
+  hashval = hashval % tableSize
+}
+```
 
 
 
 
 
+# Blockchain
+
+Blockchain is a term used to describe **DLT**, or **Distributed Ledger Technology**. Blockchain is used to create a storage system for data in a distributed and immutable manner.
+
+### Immutability
+
+This means that once data is written to a blockchain data store or **ledger**, it cannot be changed – its there forever
+
+A blockchain system ensures that even if a bit of data is changed at any level on the ledger, the entire system will report an `invalid` state. And since the data is `distributed` on multiple systems, the actual data with a valid state can be recovered from one of the systems.
+
+### Distribution
+
+As long as you see data on a blockchain and its in a `valid` state on a majority `distributed` nodes, you can trust that data to be accurate. This *trust* is key. This trust is achieved in a blockchain system by replicating the datastore on a number of peers(hosts) on the internet. If one of the misbehaving peers goes in an `invalid` state, the other peers can filter it out. As long as there is a majority of peers agreeing to a common `valid` state, you can completely trust the data that is stored on that system. This replication also guarantees high availability.
+
+The data store that keeps all blockchain data is called a **ledger**.
+
+Each entry in the ledger is called a **transaction**. 
+
+The transactions are timestamped and stored in groups of **blocks**.
+
+The **ledger** is designed to be immutable using cryptographic algorithms. The **ledger** is replicated and maintained by multiple **hosts** or **peers** or **nodes**. This is why its called **DLT** or **Distributed Ledger Technology**.
 
 
 
+## HASH FUNCTIONS
 
+A hash function maps data of arbitrary length to a unique fixed length string, called digest.
 
+A hash value for a data is X is a function:
 
+​	Hash(X) = Y
 
+- No other X’ can have HASH(X’) equal to Y. Its one to one mapping.
+- The size of Y is fixed and the size of X can be arbitrary.
+- Given Y you can not calculate X. Its a one-way function!
 
+![Screen Shot 2020-02-12 at 3.30.31 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-12 at 3.30.31 PM.png)
 
+### SHA256 Hash Function
 
+You can find libraries that implement SHA256 hash in all technologies, so you never have to write your code for SHA256 implementation.
 
+### Public key cryptography
 
+Public key cryptography is a cryptographic system used for the encryption/decryption of data. It is not one way like a hash function, meaning that the data, once encrypted, can be decrypted if you have the required key.
+
+You start by generating a special, related pair of keys. These keys can be generated in a pair only. They are output from single execution of a key generation algorithm.
+
+![Screen Shot 2020-02-12 at 3.34.53 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-12 at 3.34.53 PM.png)
+
+Color Coding: Golden key is for private key and Silver is for public key
 
