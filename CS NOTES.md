@@ -707,7 +707,7 @@ print(merge_arrays([4,5,6],[-2,-1,0,7]))
   
      - **Data** - the value you want to store in the node. Think of it as the value at a specific index in a list. The data type can range from *string* or *integer* to a custom class.
      - **Pointer** - refers us to the next Node in the list. It is essential for connectivity.
-    
+      
    ```python
      class Node:
      def __init__(self, data):
@@ -718,7 +718,7 @@ print(merge_arrays([4,5,6],[-2,-1,0,7]))
   2. LinkedList Class
   
      - The linked list itself is a collection of Node objects which we defined above. To keep track of the list, we need a pointer to the first Node in the list.
-    
+      
        This is where the principle of the **head** Node comes in. The head does not contain any data and only points to the beginning of the list. This means that, for any operations on the list, we need to traverse it from the head (the start of the list) to reach our desired list Node.
 
      ```python
@@ -1481,3 +1481,6 @@ You start by generating a special, related pair of keys. These keys can be gener
 
 Color Coding: Golden key is for private key and Silver is for public key
 
+
+
+PROOF OF WORK
