@@ -707,7 +707,7 @@ print(merge_arrays([4,5,6],[-2,-1,0,7]))
   
      - **Data** - the value you want to store in the node. Think of it as the value at a specific index in a list. The data type can range from *string* or *integer* to a custom class.
      - **Pointer** - refers us to the next Node in the list. It is essential for connectivity.
-      
+     
    ```python
      class Node:
      def __init__(self, data):
@@ -718,7 +718,7 @@ print(merge_arrays([4,5,6],[-2,-1,0,7]))
   2. LinkedList Class
   
      - The linked list itself is a collection of Node objects which we defined above. To keep track of the list, we need a pointer to the first Node in the list.
-      
+     
        This is where the principle of the **head** Node comes in. The head does not contain any data and only points to the beginning of the list. This means that, for any operations on the list, we need to traverse it from the head (the start of the list) to reach our desired list Node.
 
      ```python
@@ -1484,3 +1484,59 @@ Color Coding: Golden key is for private key and Silver is for public key
 
 
 PROOF OF WORK
+
+
+
+
+
+
+
+# Graphs
+
+- a graph is a set of nodes that are connected to each other in the form of a network.
+
+## Vertex
+
+- is the most essential part of a graph. A collection of vertices forms a graph. Vertices are similar to linked list nodes
+
+## Edges
+
+- link between two vertices. It can be uni-directional or bi-directional depending on your graph. An edge can also have a cost associated with it.
+
+![Screen Shot 2020-02-17 at 10.01.32 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-17 at 10.01.32 PM.png)
+
+## Terminologies
+
+1. **Degree of a vertex**: the total number of edges connected to a vertex. There are two types of degrees:
+   - In-Degree: The total number of incoming edges connected to a vertex
+   - Out-Degree: The total number of outgoing edges connected to a vertex
+2. **Parallel Edges:** Two undirected edges are parallel if they have the same end vertices. Two directed edges are parallel if they have the same origin and destination.
+3. **Self Loop**: This occurs when an edge starts and ends on the same vertex
+4. **Adjacency:** two vertices are said to be adjacent if there is an edge connecting them directly.
+
+## Types of Graphs
+
+1. Undirected
+   - the edges are, by default, bi-directional. 
+2. Directed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

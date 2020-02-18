@@ -3264,3 +3264,45 @@ with linear probing, when we find a collision, we search through the array to fi
 - Insert: O(1)
 - Deletion: O(1)
 - Access: O(1)
+
+
+
+
+
+
+
+# GRAPH
+
+- collections and connections of nodes
+
+
+
+## TERMINOLOGY
+
+- vertex - a node
+- edges - connection between nodes
+- weighted / unweighted - values assigned to distances between vertices
+- directed / undirected - directions assigned to distanced between vertices
+
+![Screen Shot 2020-02-17 at 4.19.31 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-17 at 4.19.31 PM.png)
+
+![Screen Shot 2020-02-17 at 4.19.38 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-17 at 4.19.38 PM.png)
+
+![Screen Shot 2020-02-17 at 4.21.12 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-17 at 4.21.12 PM.png)
+
+![Screen Shot 2020-02-17 at 4.21.39 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-17 at 4.21.39 PM.png)
+
+![Screen Shot 2020-02-17 at 4.21.53 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-17 at 4.21.53 PM.png)
+
+![Screen Shot 2020-02-17 at 4.32.43 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-17 at 4.32.43 PM.png)
+
+![Screen Shot 2020-02-17 at 4.34.54 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-17 at 4.34.54 PM.png)
+
+![Screen Shot 2020-02-17 at 4.36.21 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-17 at 4.36.21 PM.png)
+
+## Big O Notation
+
+![Screen Shot 2020-02-17 at 4.37.29 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-17 at 4.37.29 PM.png)
+
+![Screen Shot 2020-02-17 at 4.41.10 PM](/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-17 at 4.41.10 PM.png)
+
