@@ -1746,3 +1746,7 @@ class Node:
 
      <img src="/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-18 at 8.15.18 AM.png" alt="Screen Shot 2020-02-18 at 8.15.18 AM" style="zoom:50%;" />
 
+
+
+## Adding a vertex
+
