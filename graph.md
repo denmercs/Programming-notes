@@ -53,7 +53,7 @@
 
      <img src="/Users/denmercs/Desktop/LAMBDA/Notes/cs notes/pictures/Screen Shot 2020-02-17 at 11.37.14 PM.png" alt="Screen Shot 2020-02-17 at 11.37.14 PM" style="zoom:50%;" />
 
-   - In the image above, there is a directed graph which has an edge going from vertex 0 to vertex 1, so there is a **1** at Matrix[0][1]*M**a**t**r**i**x*[0][1] in the adjacency matrix. In the case of the undirected graph, we would have Matrix[1][0] = 1*M**a**t**r**i**x*[1][0]=1 as well since the edge is bidirectional.
+   - In the image above, there is a directed graph which has an edge going from vertex 0 to vertex 1, so there is a **1** at Matrix [0[1]] in the adjacency matrix. In the case of the undirected graph, we would have Matrix [1] [0] = 1 as well since the edge is bidirectional.
 
 2. **Adjacency List**
 
@@ -257,5 +257,80 @@ class Node:
 
 ## Implementing Breadth First Search
 
+```python
+def bfs_traversal(g,source):
+  result = ""
+  num_of_vertices = g.vertices
+	#Alist to hold the history of visited nodes
+	#Make a node visited whenever you enqueue it into queue
+  visited = []
+  for i in range(num_of_vertices):
+    visited.append(False)
+  #Create Queue(implemented in previous lesson) for Breadth First Traversal and enqueue source in it
+  queue = MyQueue()
+  queue.enqueue(source)
+  visited.insert(source,True)
+ #Traverse while queue is not empty
+  while(queue.is_empty() == False):
+  #Dequeue a vertex/node from queue and add it to result
+   current_node = queue.dequeue()
+   result += str(current_node)
+	#Get adjacent vertices to the current_node from the list,
+	#and if they are not already visited then enqueue them in the Queue
+   temp = g.array[current_node].head_node
+   while (temp != None):
+    if(visited[temp.data] == False):
+      queue.enqueue(temp.data)
+      visited[temp.data] = True; #Visit the current Node
+    temp = temp.next_element
+  return result #For the above graph it should return "01234" or "02143"
+```
 
+```python
+class Queue():
+    def __init__(self):
+        self.queue = []
+    def enqueue(self, value):
+        self.queue.append(value)
+    def dequeue(self):
+        if self.size() > 0:
+            return self.queue.pop(0)
+        else:
+            return None
+    def size(self):
+        return len(self.queue)
+
+class Graph:
+
+    """Represent a graph as a dictionary of vertices mapping labels to edges."""
+    def __init__(self):
+        self.vertices = {}
+        
+    def bft(self, starting_vertex):
+            """
+            Print each vertex in breadth-first order
+            beginning from starting_vertex.
+            """
+            # Create a stack/queue as appropriate
+            # using a queue because its first-in, first out
+            queue = Queue()
+            # Put the starting point in that
+            queue.enqueue(starting_vertex)
+            # Make a set to keep track of where we have been
+            visited = set()
+            # While there is stuff in the stack/queue
+            while queue.size() > 0:
+                # Pop the first item
+                vertex = queue.dequeue()
+                # If not visited
+                if vertex not in visited:
+                    # DO THE THING!
+                    print(vertex)
+                    # Add to visited
+                    visited.add(vertex)
+                    # For each edge in the item
+                    for next_vert in self.get_neighbors(vertex):
+                        # Add that edge to the stack/queue
+                        queue.enqueue(next_vert)
+```
 
