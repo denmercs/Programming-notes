@@ -15,3 +15,10 @@ function selectionSort(array) {
 }
 
 console.log(selectionSort([1, 3, 9, 4, 7, 2, 6, 8]));
+
+/**
+ *              TIME                            SPACE
+ *
+ * BEST     AVERAGE     WORST                   WORST
+ * O(n2)    O(n2)       O(n2)                   O(1)
+ */
